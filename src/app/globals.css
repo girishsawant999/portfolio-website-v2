@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f3f3f3;
+  --foreground: #181717;
+  --color-gray: #606060;
+  --color-secondary: #2429af;
+
+  --heading-1: 3.75rem;
+  --heading-2: 2rem;
+  --body: 1.125rem;
+  --navigation: 1.3125rem;
+  --sub-text: 0.875rem;
+  --sub--header---link: 1.125rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gray: var(--color-gray);
+  --color-secondary: var(--color-secondary);
+
+  --font-dm-sans: var(--font-dm-sans);
+  --font-inter: var(--font-inter);
+
+  --text-body: var(--font-size-body);
+  --text-navigation: var(--font-size-navigation);
+  --text-sub-text: var(--font-size-sub-text);
+  --text-sub-header-link: var(--font-size-sub-header-link);
+
+  --max-width-container: 1120px;
+}
+
+@utility text-heading-1 {
+  font-size: var(--heading-1);
+  line-height: 97.2%;
+  font-style: normal;
+  font-weight: 500;
+  font-family: var(--font-dm-sans);
+  letter-spacing: -0.03em;
+}
+
+@utility text-heading-2 {
+  font-size: var(--heading-2);
+  font-family: var(--font-dm-sans);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 117%;
+  letter-spacing: -0.03em;
+}
+
+@utility text-body {
+  font-size: var(--body);
+  line-height: 1.5;
+}
+@utility text-navigation {
+  font-size: var(--navigation);
+  line-height: 120%;
+  letter-spacing: -0.03em;
+  font-style: normal;
+  font-weight: 500;
+  font-family: var(--font-dm-sans);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #181717;
+    --foreground: #f3f3f3;
+  }
+} */
+
+body {
+  @apply bg-background text-foreground;
+}
