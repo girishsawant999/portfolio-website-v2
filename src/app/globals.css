@@ -23,15 +23,10 @@
   --font-dm-sans: var(--font-dm-sans);
   --font-inter: var(--font-inter);
 
-  --text-body: var(--font-size-body);
-  --text-navigation: var(--font-size-navigation);
-  --text-sub-text: var(--font-size-sub-text);
-  --text-sub-header-link: var(--font-size-sub-header-link);
-
   --max-width-container: 1120px;
 }
 
-@utility text-heading-1 {
+@utility heading-1 {
   font-size: var(--heading-1);
   line-height: 97.2%;
   font-style: normal;
@@ -40,7 +35,7 @@
   letter-spacing: -0.03em;
 }
 
-@utility text-heading-2 {
+@utility heading-2 {
   font-size: var(--heading-2);
   font-family: var(--font-dm-sans);
   font-style: normal;
@@ -49,7 +44,7 @@
   letter-spacing: -0.03em;
 }
 
-@utility text-body {
+@utility body {
   font-size: var(--body);
   line-height: 121.5%;
   letter-spacing: -0.03em;
@@ -57,7 +52,7 @@
   font-weight: 400;
   font-family: var(--font-inter);
 }
-@utility text-navigation {
+@utility navigation {
   font-size: var(--navigation);
   line-height: 120%;
   letter-spacing: -0.03em;
@@ -74,5 +69,10 @@
 } */
 
 body {
-  @apply bg-background text-foreground text-body;
+  @apply bg-background text-foreground body;
+}
+
+body::selection {
+  background: var(--color-secondary);
+  color: var(--background);
 }

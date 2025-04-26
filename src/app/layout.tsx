@@ -1,5 +1,7 @@
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import { DM_Sans, Inter } from "next/font/google";
+import Link from "next/link";
 import SmoothScrollProvider from "../components/SmoothScrollProvider";
 import "./globals.css";
 
@@ -39,34 +41,60 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${dmSans.variable} antialiased px-10 pt-24 pb-12 grid grid-rows-[auto_1fr] min-h-screen gap-20 grid-cols-12`}
+        className={`${inter.variable} ${dmSans.variable} max-w-container mx-auto  antialiased px-10 pt-24 pb-12 grid grid-rows-[auto_1fr_auto] min-h-screen gap-20 grid-cols-12`}
       >
         <SmoothScrollProvider>
-          <header className="max-w-container mx-auto flex items-center justify-between col-span-full w-full">
-            <div>
-              <span className="font-dm-sans font-bold text-3xl">gs.</span>
+          <Header />
+          <main className="col-span-full w-full">{children}</main>
+          <footer className="flex items-center justify-between col-span-full w-full">
+            <div className="flex items-center gap-4">
+              <span className="navigation text-secondary">
+                Girish Sawant ⏤ 2025
+              </span>
             </div>
-            <div className="flex items-center justify-end gap-8">
-              <a href="#work" className="text-navigation">
-                Work
-              </a>
-              <a href="#about" className="text-navigation">
-                About
-              </a>
-              <a href="#projects" className="text-navigation">
-                Projects
-              </a>
-              <a href="#contact" className="text-navigation">
-                Contact
-              </a>
-              <a href="#resume" className="text-navigation">
-                Resume
-              </a>
+            <div className="flex items-center gap-8 justify-end">
+              <Link
+                href="linkedin.com/in/girish-sawant-frontend-artist"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="navigation "
+              >
+                Github
+              </Link>
+              <Link
+                href="linkedin.com/in/girish-sawant-frontend-artist"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="navigation "
+              >
+                LinkedIn
+              </Link>
+              <Link
+                href="https://www.instagram.com/girishsawant_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="navigation "
+              >
+                Instagram
+              </Link>
+              <Link
+                href="https://www.behance.net/girishsawant"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="navigation "
+              >
+                Behance
+              </Link>
+              <Link
+                href="https://www.dribbble.com/girishsawant"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="navigation "
+              >
+                Dribbble
+              </Link>
             </div>
-          </header>
-          <main className="max-w-container mx-auto col-span-full w-full">
-            {children}
-          </main>
+          </footer>
         </SmoothScrollProvider>
       </body>
     </html>
