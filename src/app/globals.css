@@ -63,8 +63,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #181717;
-    --foreground: #f3f3f3;
+    --background: hsl(0, 2%, 10%);
+    --foreground: hsl(0, 0%, 70%);
+    --color-gray: hsl(0, 0%, 40%);
   }
 }
 
