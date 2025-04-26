@@ -51,7 +51,11 @@
 
 @utility text-body {
   font-size: var(--body);
-  line-height: 1.5;
+  line-height: 121.5%;
+  letter-spacing: -0.03em;
+  font-style: normal;
+  font-weight: 400;
+  font-family: var(--font-inter);
 }
 @utility text-navigation {
   font-size: var(--navigation);
@@ -70,5 +74,5 @@
 } */
 
 body {
-  @apply bg-background text-foreground;
+  @apply bg-background text-foreground text-body;
 }
