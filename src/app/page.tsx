@@ -108,12 +108,20 @@ export default function Home() {
           </h3>
         </div>
 
-        <div className="flex flex-col gap-7">
-          <a href="mailto:girishsawant999.gs@gmail.com" className="heading-2">
+        <div className="flex flex-col gap-3">
+          <a
+            href="mailto:girishsawant999.gs@gmail.com"
+            className="heading-2 hover:underline"
+          >
             girishsawant999.gs@gmail.com
           </a>
+          <div className="flex items-center gap-3 justify-between">
+            <a className="body w-fit hover:underline">View Resume</a>
 
-          <button className="body w-fit">View Resume</button>
+            <a href="tel:+918796456149" className="body hover:underline">
+              +91 8796456149
+            </a>
+          </div>
         </div>
       </section>
     </>

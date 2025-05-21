@@ -54,44 +54,39 @@ export default function RootLayout({
             </div>
             <div className="flex items-center gap-8 justify-end">
               <Link
-                href="linkedin.com/in/girish-sawant-frontend-artist"
+                href="https://www.npmjs.com/~girishsawant999"
                 target="_blank"
-                rel="noopener noreferrer"
                 className="navigation "
               >
-                Github
+                Npm
               </Link>
               <Link
-                href="linkedin.com/in/girish-sawant-frontend-artist"
+                href="https://dev.to/girishsawant999"
                 target="_blank"
-                rel="noopener noreferrer"
+                className="navigation"
+              >
+                Dev.to
+              </Link>
+              <Link
+                href="https://cssbattle.dev/player/girish_sawant"
+                target="_blank"
+                className="navigation"
+              >
+                CSS Battle
+              </Link>
+              <Link
+                href="https://in.linkedin.com/in/girishsawant999"
+                target="_blank"
                 className="navigation "
               >
                 LinkedIn
               </Link>
               <Link
-                href="https://www.instagram.com/girishsawant_/"
+                href="https://github.com/girishsawant999"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="navigation "
+                className="navigation"
               >
-                Instagram
-              </Link>
-              <Link
-                href="https://www.behance.net/girishsawant"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="navigation "
-              >
-                Behance
-              </Link>
-              <Link
-                href="https://www.dribbble.com/girishsawant"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="navigation "
-              >
-                Dribbble
+                Github
               </Link>
             </div>
           </footer>
