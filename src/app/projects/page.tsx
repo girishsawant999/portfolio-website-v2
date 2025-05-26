@@ -72,7 +72,7 @@ const Projects = () => {
               </a>
             </div>
             <div className="lg:col-span-7">
-              <div className="w-full aspect-[16/9] bg-[#606060]">
+              <div className="w-full aspect-[16/9] bg-[#606060] shadow-lg">
                 <video
                   className="w-full h-full object-cover"
                   autoPlay
