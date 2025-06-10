@@ -108,7 +108,7 @@ export default function Home() {
           </h3>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div id="contacts" className="flex flex-col gap-3">
           <a
             href="mailto:girishsawant999.gs@gmail.com"
             className="heading-2 hover:underline"
