@@ -1,3 +1,4 @@
+import FullscreenVideo from "@/components/FullscreenVideo";
 import clsx from "clsx";
 import { PROJECTS } from "./constant";
 
@@ -72,22 +73,10 @@ const Projects = () => {
               </a>
             </div>
             <div className="lg:col-span-7">
-              <div className="w-full aspect-[16/9] bg-[#606060] shadow-lg">
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  poster={`/projects/${project.key}/image.png`}
-                >
-                  <source
-                    src={`/projects/${project.key}/video.mov`}
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+              <FullscreenVideo
+                src={`/projects/${project.key}/video.mov`}
+                poster={`/projects/${project.key}/image.png`}
+              />
             </div>
           </div>
           <div className="w-full border-b-[1.5px] border-[#181717] mt-6"></div>

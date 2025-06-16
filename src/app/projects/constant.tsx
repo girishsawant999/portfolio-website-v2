@@ -41,11 +41,11 @@ export const PROJECTS = [
     link: "https://www.npmjs.com/~girishsawant999?activeTab=packages",
   },
   {
-    key: "project-b",
-    title: "Project C",
-    description: "This is a description of Project C.",
-    skills: ["Next.js", "TypeScript", "Tailwind CSS"],
-    link: "https://example.com/project-c",
-    image: "/images/project-c.png",
+    key: "spotify-clone",
+    title: "Spotify Clone - Web App",
+    description:
+      "A responsive web application replicating Spotify's core functionality and user interface. Features include music playback, playlist management, and search functionality, all within a familiar Spotify-inspired design.",
+    skills: ["React.js", "Javascript", "Material UI", "Bootstrap", "CSS"],
+    link: "https://g-spotify.netlify.app/",
   },
 ];
