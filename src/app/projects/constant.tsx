@@ -33,6 +33,23 @@ export const PROJECTS = [
     link: "https://internal.stampmyvisa.com",
   },
   {
+    key: "esoteric-trade",
+    title: "Esoteric Trade - Web App",
+    description:
+      "An admin platform to manage strategies, users, actors, reports, and positions for a trading bot. Enables efficient oversight and configuration of trading operations.",
+    skills: [
+      "React.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Figma",
+      "Ant Design",
+      "REST API",
+      "WebSockets",
+      "Charting Libraries",
+    ],
+    link: "https://esoterictrade.net/",
+  },
+  {
     key: "npm-packages",
     title: "React NPM Packages",
     description:
