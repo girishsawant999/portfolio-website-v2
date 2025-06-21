@@ -60,7 +60,7 @@ const Projects = () => {
                   "hover:before:w-full"
                 )}
               >
-                Preview this project
+                {new URL(project.link).hostname.replace(/^www\./, "")}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
