@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 interface FullscreenVideoProps {
@@ -59,16 +58,10 @@ export default function FullscreenVideo({ src, poster }: FullscreenVideoProps) {
           Fullscreen
         </button>
       </div>
-      <AnimatePresence>
+      <>
         {isFullscreen && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <motion.video
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90">
+            <video
               ref={videoRef}
               className="w-fit h-[90vh] object-contain bg-black"
               autoPlay
@@ -76,14 +69,10 @@ export default function FullscreenVideo({ src, poster }: FullscreenVideoProps) {
               muted
               controls
               poster={poster}
-              initial={{ scale: 0.7, opacity: 0, y: 100 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.7, opacity: 0, y: -100 }}
-              transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
               <source src={src} type="video/mp4" />
               Your browser does not support the video tag.
-            </motion.video>
+            </video>
             <button
               className="absolute top-6 border-gray-800 border border-solid cursor-pointer  right-8 px-3 text-white text-xl z-50 flex items-center justify-center gap-1 bg-gray-800/70 rounded-full py-2 hover:bg-gray-700 transition-colors "
               onClick={handleClose}
@@ -99,9 +88,9 @@ export default function FullscreenVideo({ src, poster }: FullscreenVideoProps) {
                 <path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"></path>
               </svg>
             </button>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </>
     </>
   );
 }

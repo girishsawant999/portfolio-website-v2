@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Home() {
@@ -8,15 +7,13 @@ export default function Home() {
     <>
       <section id="hero-section" className="flex justify-between w-full gap-20">
         <div className="flex-1">
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+          <h1
+
             className="heading-1 mb-8"
           >
             Hi, I’m <br />
             Girish Sawant, a Frontend Artist
-          </motion.h1>
+          </h1>
           <p className="heading-2 text-gray">
             My work is mainly focused on crafting intuitive, high-performance
             frontends that merge design clarity with technical depth. I turn
@@ -31,24 +28,20 @@ export default function Home() {
         </div>
         <div className="flex-1 justify-items-end relative">
           <div className="relative overflow-hidden">
-            <motion.span
-              initial={{ height: "500%" }}
-              animate={{ height: "40%" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+            <span
+
               className="absolute top-0 inset-x-0 [mask-image:linear-gradient(var(--background),#fff0)] [background:linear-gradient(var(--background),#fff0)] backdrop-blur-[2px]"
-            ></motion.span>
+            ></span>
             <Image
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
               width={421}
               height={590}
             />
-            <motion.span
-              initial={{ height: "500%" }}
-              animate={{ height: "15%" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+            <span
+
               className="absolute bottom-0 inset-x-0 [mask-image:linear-gradient(#fff0,var(--background))] [background:linear-gradient(#fff0,var(--background))] backdrop-blur-[2px]"
-            ></motion.span>
+            ></span>
           </div>
         </div>
       </section>
