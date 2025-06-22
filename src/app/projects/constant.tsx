@@ -63,6 +63,14 @@ export const PROJECTS = [
     description:
       "A responsive web application replicating Spotify's core functionality and user interface. Features include music playback, playlist management, and search functionality, all within a familiar Spotify-inspired design.",
     skills: ["React.js", "Javascript", "Material UI", "Bootstrap", "CSS"],
-    link: "https://g-spotify.netlify.app/",
+    link: "https://spotify-musix.netlify.app/",
+  },
+  {
+    key: "be-animated",
+    title: "Be Animated - GIF Loader hub",
+    description:
+      "A web app to search for GIFs, copy their URLs, and easily use them across the web. Integrates with popular GIF APIs for seamless discovery and sharing.",
+    skills: ["React.js", "TypeScript", "Tailwind CSS", "Giphy API", "motion"],
+    link: "https://be-animated.netlify.app/",
   },
 ];
