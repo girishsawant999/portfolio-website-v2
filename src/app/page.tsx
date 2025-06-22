@@ -7,10 +7,7 @@ export default function Home() {
     <>
       <section id="hero-section" className="flex justify-between w-full gap-20">
         <div className="flex-1">
-          <h1
-
-            className="heading-1 mb-8"
-          >
+          <h1 className="heading-1 mb-8">
             Hi, I’m <br />
             Girish Sawant, a Frontend Artist
           </h1>
@@ -28,20 +25,15 @@ export default function Home() {
         </div>
         <div className="flex-1 justify-items-end relative">
           <div className="relative overflow-hidden">
-            <span
-
-              className="absolute top-0 inset-x-0 [mask-image:linear-gradient(var(--background),#fff0)] [background:linear-gradient(var(--background),#fff0)] backdrop-blur-[2px]"
-            ></span>
+            <span className="absolute top-0 inset-x-0 [mask-image:linear-gradient(var(--background),#fff0)] [background:linear-gradient(var(--background),#fff0)] backdrop-blur-[2px]" />
             <Image
-              src="/images/profile.jpeg"
+              src="/images/profile-2.jpeg"
               alt="Profile picture of Girish Sawant"
               width={421}
               height={590}
+              className="object-cover"
             />
-            <span
-
-              className="absolute bottom-0 inset-x-0 [mask-image:linear-gradient(#fff0,var(--background))] [background:linear-gradient(#fff0,var(--background))] backdrop-blur-[2px]"
-            ></span>
+            <span className="absolute bottom-0 inset-x-0 [mask-image:linear-gradient(#fff0,var(--background))] [background:linear-gradient(#fff0,var(--background))] backdrop-blur-[2px]" />
           </div>
         </div>
       </section>
