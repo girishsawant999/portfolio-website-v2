@@ -33,7 +33,7 @@ export default function Home() {
               alt="Profile picture of Girish Sawant"
               width={421}
               height={590}
-              className="object-cover"
+              className="object-cover dark:brightness-75"
             />
             <span className="absolute bottom-0 inset-x-0 [mask-image:linear-gradient(#fff0,var(--background))] [background:linear-gradient(#fff0,var(--background))] backdrop-blur-[2px]" />
           </div>
