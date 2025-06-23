@@ -1,13 +1,13 @@
 import FullscreenVideo from "@/components/FullscreenVideo";
+import { PROJECTS } from "@/constant";
 import clsx from "clsx";
-import { PROJECTS } from "./constant";
 
 const Projects = () => {
   return (
     <>
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-        <div className="flex flex-col justify-center">
-          <h1 className="text-6xl font-medium text-[#181717] mb-8">
+        <div className="flex flex-col justify-center text-heading-1">
+          <h1 className="text-6xl font-medium text-heading-1 mb-8">
             Recent Work and Projects
           </h1>
           <div className="flex justify-start mt-4">
@@ -21,7 +21,7 @@ const Projects = () => {
             >
               <path
                 d="M19.2187 0.181824H14.4176V29.2102L3.31959 18.1122L0.0326538 21.4361L16.8182 38.2216L33.6406 21.4361L30.2798 18.1122L19.2187 29.2102V0.181824Z"
-                fill="#181717"
+                fill="currentColor"
               />
             </svg>
           </div>
@@ -39,10 +39,10 @@ const Projects = () => {
         <section key={project.key} className="mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-4">
             <div className="lg:col-span-5 flex flex-col space-y-4">
-              <h2 className="text-lg font-medium text-[#181717]">
+              <h2 className="text-lg font-medium text-heading-2">
                 {String(index + 1).padStart(2, "0")} / {project.title}
               </h2>
-              <p className="text-lg text-[#181717]">{project.description}</p>
+              <p className="text-lg text-body">{project.description}</p>
               {project.skills && (
                 <p className="text-sm text-[#606060]">
                   {Array.isArray(project.skills) && project.skills.length > 0
@@ -55,8 +55,8 @@ const Projects = () => {
                 href={project.link}
                 target="_blank"
                 className={clsx(
-                  "text-lg font-medium text-[#181717] flex items-center gap-1 relative w-fit",
-                  "before:content-[''] before:rounded-md before:h-px before:bottom-0.5 before:bg-current before:transition-[width] before:ease-in  before:absolute before:left-0 before:w-0",
+                  "text-lg font-medium text-heading-2 flex items-center gap-1 relative w-fit",
+                  "before:content-[''] before:text-inherit before:rounded-md before:h-px before:bottom-0.5 before:bg-current before:transition-[width] before:ease-in  before:absolute before:left-0 before:w-0",
                   "hover:before:w-full"
                 )}
               >
@@ -65,7 +65,7 @@ const Projects = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
-                  fill="#000000"
+                  fill="currentColor"
                   viewBox="0 0 256 256"
                 >
                   <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"></path>
