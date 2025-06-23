@@ -74,3 +74,6 @@ export const PROJECTS = [
     link: "https://be-animated.netlify.app/",
   },
 ];
+
+export const RESUME_LINK =
+  "https://drive.google.com/file/d/19_ZqPrn0TRYKor3uMnJq4x0pXGG2MHH2/view?usp=sharing";

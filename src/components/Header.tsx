@@ -1,3 +1,4 @@
+import { RESUME_LINK } from "@/constant";
 import Link from "next/link";
 
 const Header = () => {
@@ -15,7 +16,7 @@ const Header = () => {
         <Link href="/projects" className="navigation">
           Projects
         </Link>
-        <Link href="/resume" className="navigation">
+        <Link href={RESUME_LINK} target="_blank" className="navigation">
           Resume
         </Link>
       </div>

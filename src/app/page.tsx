@@ -1,5 +1,7 @@
 "use client";
 
+import { RESUME_LINK } from "@/constant";
+import Link from "next/dist/client/link";
 import Image from "next/image";
 
 export default function Home() {
@@ -101,7 +103,13 @@ export default function Home() {
             girishsawant999.gs@gmail.com
           </a>
           <div className="flex items-center gap-3 justify-between">
-            <a className="body w-fit hover:underline">View Resume</a>
+            <Link
+              href={RESUME_LINK}
+              target="_blank"
+              className="body w-fit hover:underline cursor-pointer"
+            >
+              View Resume
+            </Link>
 
             <a href="tel:+918796456149" className="body hover:underline">
               +91 8796456149
