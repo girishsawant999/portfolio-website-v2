@@ -1,8 +1,43 @@
+"use client";
+
 import FullscreenVideo from "@/components/FullscreenVideo";
 import { PROJECTS } from "@/constant";
+import { useGSAP } from "@gsap/react";
+// import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const Projects = () => {
+  useGSAP(() => {
+    const splitTextDescription = new SplitText(".projects-page-description", {
+      type: "words",
+    });
+
+    gsap.from("article", {
+      opacity: 0,
+      y: 100,
+      duration: 0.3,
+      stagger: 0.1,
+      ease: "power2.out",
+    });
+
+    gsap.from(splitTextDescription.words, {
+      duration: 0.2,
+      opacity: 0.2,
+      stagger: 0.05,
+      ease: "power2.inOut",
+    });
+
+    return () => {
+      splitTextDescription.revert();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
   return (
     <>
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
@@ -27,7 +62,7 @@ const Projects = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <p className="text-[32px] text-[#606060] body leading-9">
+          <p className="text-[32px] text-[#606060] body leading-9 projects-page-description">
             From concept to execution—here’s a look at what I’ve been building
             lately. Each project reflects my focus on clean design, performance,
             and user experience.
@@ -36,7 +71,7 @@ const Projects = () => {
       </section>
 
       {PROJECTS.map((project, index) => (
-        <section key={project.key} className="mb-16">
+        <article key={project.key} className="mb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-4">
             <div className="lg:col-span-5 flex flex-col space-y-4">
               <h2 className="text-lg font-medium text-heading-2">
@@ -80,7 +115,7 @@ const Projects = () => {
             </div>
           </div>
           <div className="w-full border-b-[1.5px] border-[#181717] mt-6"></div>
-        </section>
+        </article>
       ))}
     </>
   );

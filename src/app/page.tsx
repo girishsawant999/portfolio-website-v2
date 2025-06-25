@@ -1,15 +1,64 @@
 "use client";
 
 import { RESUME_LINK } from "@/constant";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import Link from "next/dist/client/link";
 import Image from "next/image";
+import { useRef } from "react";
+
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export default function Home() {
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+
+    const splitTextHeader = new SplitText("#hero-title", {
+      type: "words",
+    });
+
+    const splitTextDescription = new SplitText("#hero-section p", {
+      type: "words",
+    });
+
+    tl.from(splitTextHeader.words, {
+      duration: 0.3,
+      y: 20,
+      opacity: 0,
+      stagger: 0.05,
+      ease: "power2.inOut",
+    });
+
+    if (imageRef.current) {
+      tl.from(imageRef.current, {
+        duration: 0.2,
+        opacity: 0.2,
+        filter: "blur(4px)",
+        ease: "power2.inOut",
+      });
+    }
+
+    tl.from(
+      splitTextDescription.words,
+      {
+        duration: 0.3,
+        opacity: 0.2,
+        stagger: 0.1,
+        ease: "power2.inOut",
+      },
+      "<"
+    );
+  }, []);
+
   return (
     <>
       <section id="hero-section" className="flex justify-between w-full gap-20">
         <div className="flex-1">
-          <h1 className="heading-1 mb-8">
+          <h1 id="hero-title" className="heading-1 mb-8">
             Hi, I’m <br />
             Girish Sawant, a Frontend Artist
           </h1>
@@ -26,29 +75,29 @@ export default function Home() {
           </p>
         </div>
         <div className="flex-1 justify-items-end relative">
-          <div className="relative overflow-hidden">
-            <span className="absolute top-0 inset-x-0 [mask-image:linear-gradient(var(--background),#fff0)] [background:linear-gradient(var(--background),#fff0)] backdrop-blur-[2px]" />
+          <div className="relative overflow-hidden bg-gray-200">
             <Image
-              src="/images/profile-2.jpeg"
+              src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
               width={421}
-              height={590}
+              height={561}
               className="object-cover dark:brightness-75"
+              priority
+              ref={imageRef}
             />
-            <span className="absolute bottom-0 inset-x-0 [mask-image:linear-gradient(#fff0,var(--background))] [background:linear-gradient(#fff0,var(--background))] backdrop-blur-[2px]" />
           </div>
         </div>
       </section>
 
       <section id="skills" className="flex flex-col gap-20 pt-32 pb-20">
         <div className="flex flex-col gap-20 max-w-1/2">
-          <div className="flex gap-16">
+          <div className="primary-skills flex gap-16">
             <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
               Main Skills
             </h3>
             <p className="body">
               React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS,
-              Framer Motion,
+              GSAP, Framer Motion
             </p>
           </div>
           <div className="flex gap-16">
