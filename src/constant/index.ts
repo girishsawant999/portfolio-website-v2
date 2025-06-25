@@ -81,6 +81,14 @@ export const PROJECTS = [
     skills: ["React.js", "JavaScript", "CSS", "WebRTC", "Socket.IO", "Node.js"],
     link: "https://meetzy.netlify.app/",
   },
+  {
+    key: "konveyor",
+    title: "Konveyor - API Product landing page",
+    description:
+      "StampMyVisa Konveyor, designed & developed in-house, is a complete suite of embeddable APIs for all things travel, to manage all your users",
+    skills: ["Next.js", "TypeScript", "Tailwind CSS", "Figma"],
+    link: "https://konveyor.stampmyvisa.com/",
+  },
 ];
 
 export const RESUME_LINK =
