@@ -73,6 +73,14 @@ export const PROJECTS = [
     skills: ["React.js", "TypeScript", "Tailwind CSS", "Giphy API", "motion"],
     link: "https://be-animated.netlify.app/",
   },
+  {
+    key: "meetzy",
+    title: "Meetzy - Video calling web app",
+    description:
+      "A video calling web application that allows users to create rooms, invite participants, and engage in real-time video conversations. Built with a focus on user experience and performance.",
+    skills: ["React.js", "JavaScript", "CSS", "WebRTC", "Socket.IO", "Node.js"],
+    link: "https://meetzy.netlify.app/",
+  },
 ];
 
 export const RESUME_LINK =
