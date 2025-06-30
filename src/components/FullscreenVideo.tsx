@@ -14,29 +14,50 @@ export default function FullscreenVideo({ src, poster }: FullscreenVideoProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleFullscreen = () => {
     setShowOverlay(true);
-    setTimeout(() => setIsFullscreen(true), 10); // allow overlay to mount
+    setTimeout(() => {
+      setIsFullscreen(true);
+      setIsAnimating(true);
+    }, 10); // allow overlay to mount
   };
 
   const handleClose = () => {
     if (overlayRef.current) {
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.35,
-        y: 100,
-        ease: "power2.inOut",
+      setIsAnimating(true);
+      // Animate both background and video
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.inOut" },
         onComplete: () => {
           setIsFullscreen(false);
           setShowOverlay(false);
+          setIsAnimating(false);
           videoRef.current?.pause();
         },
       });
+      tl.to(
+        overlayRef.current,
+        {
+          opacity: 0,
+          duration: 0.35,
+        },
+        0
+      ).to(
+        overlayRef.current.querySelector("video"),
+        {
+          scale: 0.92,
+          y: 80,
+          filter: "blur(6px)",
+          duration: 0.35,
+        },
+        0
+      );
     } else {
       setIsFullscreen(false);
       setShowOverlay(false);
+      setIsAnimating(false);
       videoRef.current?.pause();
     }
   };
@@ -58,10 +79,21 @@ export default function FullscreenVideo({ src, poster }: FullscreenVideoProps) {
   // Animate overlay in when isFullscreen becomes true
   useGSAP(() => {
     if (isFullscreen && overlayRef.current) {
-      gsap.fromTo(
+      setIsAnimating(true);
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
+        onComplete: () => setIsAnimating(false),
+      });
+      tl.fromTo(
         overlayRef.current,
-        { opacity: 0, scale: 0.9, y: 100 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "power2.out" }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.28 },
+        0
+      ).fromTo(
+        overlayRef.current.querySelector("video"),
+        { scale: 0.92, y: 80, filter: "blur(6px)" },
+        { scale: 1, y: 0, filter: "blur(0px)", duration: 0.38 },
+        0.05
       );
     }
   }, [isFullscreen]);
@@ -89,32 +121,40 @@ export default function FullscreenVideo({ src, poster }: FullscreenVideoProps) {
           Fullscreen
         </button>
       </div>
-      {/* Fullscreen overlay with GSAP animation */}
+      {/* Fullscreen overlay with improved GSAP animation */}
       {showOverlay && (
         <div
           ref={overlayRef}
           className="full-screen-video fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
           style={{
             opacity: isFullscreen ? 1 : 0,
-            pointerEvents: isFullscreen ? "auto" : "none",
+            pointerEvents: isAnimating || isFullscreen ? "auto" : "none",
+            transition: "opacity 0.2s",
           }}
         >
           <video
-            ref={videoRef}
-            className="w-fit h-[90vh] object-contain bg-black"
+            className="w-fit object-contain shadow-2xl rounded-lg"
             autoPlay
             loop
             muted
             controls
             poster={poster}
+            style={{
+              background: "#222",
+              maxHeight: "80vh",
+              maxWidth: "90vw",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
+            }}
           >
             <source src={src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <button
-            className="absolute top-6 border-gray-800 border border-solid cursor-pointer  right-8 px-3 text-white text-xl z-50 flex items-center justify-center gap-1 bg-gray-800/70 rounded-full py-2 hover:bg-gray-700 transition-colors "
+            className="absolute top-6 border-gray-800 border border-solid cursor-pointer right-8 px-3 text-white text-xl z-50 flex items-center justify-center gap-1 bg-gray-800/70 rounded-full py-2 hover:bg-gray-700 transition-colors "
             onClick={handleClose}
             aria-label="Close fullscreen"
+            disabled={isAnimating}
+            style={{ opacity: isAnimating ? 0.6 : 1 }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
