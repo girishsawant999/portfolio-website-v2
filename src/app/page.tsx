@@ -15,6 +15,15 @@ export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   useGSAP(() => {
+    if (imageRef.current) {
+      gsap.from(imageRef.current, {
+        duration: 0.2,
+        opacity: 0.2,
+        filter: "blur(4px)",
+        ease: "power2.inOut",
+      });
+    }
+
     const tl = gsap.timeline();
 
     const splitTextHeader = new SplitText("#hero-title", {
@@ -32,15 +41,6 @@ export default function Home() {
       stagger: 0.05,
       ease: "power2.inOut",
     });
-
-    if (imageRef.current) {
-      tl.from(imageRef.current, {
-        duration: 0.2,
-        opacity: 0.2,
-        filter: "blur(4px)",
-        ease: "power2.inOut",
-      });
-    }
 
     tl.from(
       splitTextDescription.words,
