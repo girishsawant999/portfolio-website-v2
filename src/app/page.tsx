@@ -79,8 +79,8 @@ export default function Home() {
             <Image
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
-              width={421}
-              height={561}
+              width={420}
+              height={562}
               className="object-cover dark:brightness-75"
               priority
               ref={imageRef}
