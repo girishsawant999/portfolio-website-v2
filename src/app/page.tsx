@@ -65,17 +65,17 @@ export default function Home() {
             Hi, I’m <br />
             Girish Sawant, a Frontend Artist
           </h1>
-          <p className="heading-2 text-gray">
+          <h2 className="heading-2 text-gray">
             My work is mainly focused on crafting intuitive, high-performance
             frontends that merge design clarity with technical depth. I turn
             complex ideas into elegant interfaces—clean, scalable, and built to
             last.
-          </p>
-          <p className="heading-2 text-gray mt-4">
+          </h2>
+          <h2 className="heading-2 text-gray mt-4">
             Now, I’m working as a Frontend Tech Lead at StampMyVisa, where I
             lead frontend strategy, mentor developers, and craft user
             experiences.
-          </p>
+          </h2>
         </div>
         <div className="flex-1 justify-items-end relative">
           <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700">

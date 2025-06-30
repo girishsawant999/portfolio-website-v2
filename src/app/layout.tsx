@@ -18,19 +18,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Girish Sawant | Portfolio",
+  title: "About Girish Sawant | Frontend Tech Lead & Creative Developer",
   description:
-    "Portfolio of Girish Sawant, a Frontend Artist showcasing work, projects, and skills.",
+    "Learn more about Girish Sawant, a Frontend Tech Lead passionate about crafting scalable, user-centric web experiences using React, TypeScript, and TailwindCSS. Explore his journey, skills, and leadership in building high-performance applications.",
   keywords: [
     "Girish Sawant",
-    "Frontend Artist",
-    "Portfolio",
-    "Web Development",
-    "UI/UX Design",
-    "JavaScript",
-    "React",
+    "Frontend Tech Lead",
+    "Frontend Developer",
+    "React Developer",
+    "TypeScript",
+    "TailwindCSS",
     "Next.js",
+    "Web Developer Portfolio",
+    "UI/UX Developer",
+    "Frontend Architecture",
+    "Microfrontends",
+    "JavaScript",
+    "B2B Platform Developer",
+    "Responsive Web Design",
+    "Creative Frontend Artist",
   ],
+  openGraph: {
+    images: [
+      {
+        url: "/images/logo.svg",
+        width: 72,
+        height: 72,
+        alt: "Girish Sawant Portfolio Preview",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
