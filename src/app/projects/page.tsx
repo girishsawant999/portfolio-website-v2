@@ -23,6 +23,9 @@ const Projects = () => {
       duration: 0.3,
       stagger: 0.1,
       ease: "power2.out",
+      onComplete: () => {
+        gsap.set("article", { clearProps: "all" });
+      },
     });
 
     gsap.from(splitTextDescription.words, {
