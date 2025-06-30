@@ -41,22 +41,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${dmSans.variable} max-w-container mx-auto  antialiased px-10 pt-24 pb-12 grid grid-rows-[auto_1fr_auto] min-h-screen gap-20 grid-cols-12`}
+        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-container mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 py-6 gap-10 md:gap-20  md:py-12`}
       >
         <SmoothScrollProvider>
           <Header />
-          <main className="col-span-full w-full">{children}</main>
-          <footer className="flex items-center justify-between col-span-full w-full">
+          <main className="w-full flex-1">{children}</main>
+          <footer className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 sm:gap-0 pt-8 border-t border-neutral-200 dark:border-neutral-800 mt-8">
             <div className="flex items-center gap-4">
               <span className="navigation text-secondary">
                 Girish Sawant ⏤ 2025
               </span>
             </div>
-            <div className="flex items-center gap-8 justify-end">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8 justify-center sm:justify-end">
               <Link
                 href="https://www.npmjs.com/~girishsawant999"
                 target="_blank"
-                className="navigation "
+                className="navigation"
               >
                 Npm
               </Link>
@@ -77,7 +77,7 @@ export default function RootLayout({
               <Link
                 href="https://in.linkedin.com/in/girishsawant999"
                 target="_blank"
-                className="navigation "
+                className="navigation"
               >
                 LinkedIn
               </Link>
