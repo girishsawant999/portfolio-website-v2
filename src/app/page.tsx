@@ -56,9 +56,12 @@ export default function Home() {
 
   return (
     <>
-      <section id="hero-section" className="flex justify-between w-full gap-20">
+      <section
+        id="hero-section"
+        className="flex flex-col md:flex-row justify-between w-full gap-10 md:gap-20"
+      >
         <div className="flex-1">
-          <h1 id="hero-title" className="heading-1 mb-8">
+          <h1 id="hero-title" className="heading-1 mb-5 md:mb-8">
             Hi, I’m <br />
             Girish Sawant, a Frontend Artist
           </h1>
@@ -90,7 +93,7 @@ export default function Home() {
       </section>
 
       <section id="skills" className="flex flex-col gap-20 pt-32 pb-20">
-        <div className="flex flex-col gap-20 max-w-1/2">
+        <div className="flex flex-col gap-20 max-w-full md:max-w-1/2">
           <div className="primary-skills flex gap-16">
             <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
               Main Skills
@@ -124,8 +127,11 @@ export default function Home() {
 
       <hr className="border-foreground border-t-2" />
 
-      <section id="contact" className="flex justify-between pt-16">
-        <div className="max-w-1/3">
+      <section
+        id="contact"
+        className="flex flex-col md:flex-row justify-between pt-16 gap-y-10"
+      >
+        <div className="max-w-full md:max-w-1/3">
           <h3 className="heading-2">
             I am thrilled to answer to your next project
             <svg

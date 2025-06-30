@@ -42,11 +42,9 @@ const Projects = () => {
 
   return (
     <>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 md:mb-24">
         <div className="flex flex-col justify-center text-heading-1">
-          <h1 className="text-6xl font-medium text-heading-1 mb-8">
-            Recent Work and Projects
-          </h1>
+          <h1 className="heading-1 mb-5 md:mb-8">Recent Work and Projects</h1>
           <div className="flex justify-start mt-4">
             <svg
               width={34}
@@ -64,7 +62,7 @@ const Projects = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <p className="text-[32px] text-[#606060] body leading-9 projects-page-description">
+          <p className="heading-2 text-gray projects-page-description">
             From concept to execution—here’s a look at what I’ve been building
             lately. Each project reflects my focus on clean design, performance,
             and user experience.
@@ -116,7 +114,7 @@ const Projects = () => {
               />
             </div>
           </div>
-          <div className="w-full border-b-[1.5px] border-[#181717] mt-6"></div>
+          <div className="w-full border-b-[1.5px] border-gray-900 dark:border-gray-400 mt-6"></div>
         </article>
       ))}
     </>
