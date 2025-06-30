@@ -9,7 +9,7 @@ const Header = () => {
           gs.
         </Link>
       </div>
-      <div className="flex items-center justify-end gap-8">
+      <div className="flex items-center justify-end gap-5 md:gap-8">
         <Link href="/" className="navigation">
           About
         </Link>
