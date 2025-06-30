@@ -3,7 +3,6 @@
 import FullscreenVideo from "@/components/FullscreenVideo";
 import { PROJECTS } from "@/constant";
 import { useGSAP } from "@gsap/react";
-// import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
