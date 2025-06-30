@@ -75,7 +75,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex-1 justify-items-end relative">
-          <div className="relative overflow-hidden bg-gray-200">
+          <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700">
             <Image
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
