@@ -20,6 +20,12 @@ export const metadata: Metadata = {
     "Creative Frontend Work",
     "Microfrontend Projects",
     "Scalable Web Interfaces",
+    "StampMyVisa",
+    "Esoteric Trade",
+    "Spotify",
+    "GIF - Be Animated",
+    "Meetzy",
+    "Konveyor",
   ],
 };
 
