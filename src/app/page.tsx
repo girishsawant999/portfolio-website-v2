@@ -66,15 +66,15 @@ export default function Home() {
             Girish Sawant, a Frontend Artist
           </h1>
           <h2 className="heading-2 text-gray">
-            My work is mainly focused on crafting intuitive, high-performance
-            frontends that merge design clarity with technical depth. I turn
-            complex ideas into elegant interfaces—clean, scalable, and built to
-            last.
+            As a Frontend Tech Lead, I specialize in building scalable,
+            user-focused applications using React and TypeScript. I lead
+            frontend architecture, optimize UI/UX, and deliver impactful
+            features that drive performance and product success.
           </h2>
           <h2 className="heading-2 text-gray mt-4">
-            Now, I’m working as a Frontend Tech Lead at StampMyVisa, where I
-            lead frontend strategy, mentor developers, and craft user
-            experiences.
+            Previously, I led frontend strategy and development, mentored
+            engineers, and crafted seamless user experiences by aligning design
+            and engineering goals.
           </h2>
         </div>
         <div className="flex-1 justify-items-end relative">
