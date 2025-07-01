@@ -30,7 +30,7 @@ export default function Home() {
       type: "words",
     });
 
-    const splitTextDescription = new SplitText("#hero-section p", {
+    const splitTextDescription = new SplitText("#hero-section h2", {
       type: "words",
     });
 
