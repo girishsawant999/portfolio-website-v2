@@ -15,15 +15,6 @@ export default function Home() {
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   useGSAP(() => {
-    if (imageRef.current) {
-      gsap.from(imageRef.current, {
-        duration: 0.2,
-        opacity: 0.2,
-        filter: "blur(4px)",
-        ease: "power2.inOut",
-      });
-    }
-
     const tl = gsap.timeline();
 
     const splitTextHeader = new SplitText("#hero-title", {
@@ -87,6 +78,14 @@ export default function Home() {
               className="object-cover dark:brightness-75"
               priority
               ref={imageRef}
+              onLoad={() => {
+                gsap.from(imageRef.current, {
+                  duration: 0.2,
+                  opacity: 0.2,
+                  filter: "blur(4px)",
+                  ease: "power2.inOut",
+                });
+              }}
             />
           </div>
         </div>
