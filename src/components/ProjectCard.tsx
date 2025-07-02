@@ -26,8 +26,8 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
     const ctx = gsap.context(() => {
       gsap.from(cardRef.current, {
         opacity: 0,
-        y: 50,
-        duration: 0.3,
+        y: 100,
+        duration: 0.35,
         ease: "sine.in",
         scrollTrigger: {
           trigger: cardRef.current,
