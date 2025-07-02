@@ -26,6 +26,9 @@ const Projects = () => {
       opacity: 0,
       stagger: 0.05,
       ease: "power2.inOut",
+      onStart: () => {
+        gsap.set(".projects-page-description", { opacity: 1 });
+      },
     });
 
     tl.from(".projects-arrow-icon", {
@@ -73,7 +76,7 @@ const Projects = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <p className="heading-2 text-gray projects-page-description">
+          <p className="heading-2 text-gray projects-page-description opacity-0">
             From concept to execution—here’s a look at what I’ve been building
             lately. Each project reflects my focus on clean design, performance,
             and user experience.
