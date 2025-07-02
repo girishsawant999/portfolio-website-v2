@@ -36,7 +36,7 @@ export default function Home() {
     tl.from(
       splitTextDescription.words,
       {
-        duration: 0.3,
+        duration: 0.2,
         opacity: 0.2,
         stagger: 0.1,
         ease: "power2.inOut",
