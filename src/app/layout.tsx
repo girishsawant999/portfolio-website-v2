@@ -17,28 +17,43 @@ const inter = Inter({
   weight: ["400", "500"], // Regular (400) and Medium (500)
 });
 
+// ...existing code...
 export const metadata: Metadata = {
-  title: "About Girish Sawant | Frontend Tech Lead & Creative Developer",
+  title:
+    "Girish Sawant - Portfolio | Frontend Tech Lead Building Scalable React Apps | Web developer",
   description:
-    "Learn more about Girish Sawant, a Frontend Tech Lead passionate about crafting scalable, user-centric web experiences using React, TypeScript, and TailwindCSS. Explore his journey, skills, and leadership in building high-performance applications.",
+    "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
   keywords: [
-    "Girish Sawant",
+    "Frontend Developer Resume",
+    "Developer Portfolio",
     "Frontend Tech Lead",
-    "Frontend Developer",
     "React Developer",
-    "TypeScript",
+    "TypeScript Developer",
     "TailwindCSS",
-    "Next.js",
+    "JavaScript Developer",
+    "Responsive Web Design",
     "Web Developer Portfolio",
     "UI/UX Developer",
     "Frontend Architecture",
-    "Microfrontends",
-    "JavaScript",
-    "B2B Platform Developer",
-    "Responsive Web Design",
-    "Creative Frontend Artist",
+    "Creative Developer",
+    "Next.js",
+    "Scalable Web Applications",
+    "Frontend Projects",
+    "Modern Web Development",
+    "Technical Skills",
+    "Developer Experience",
+    "Developer Case Studies",
+    "Code Quality",
+    "Girish Sawant",
   ],
   openGraph: {
+    title: "Girish Sawant - Portfolio",
+    description:
+      "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
+    url: "https://girishsawant.vercel.app",
+    siteName: "Girish Sawant Portfolio",
+    type: "website",
+    locale: "en_US",
     images: [
       {
         url: "/images/logo.svg",
@@ -46,9 +61,37 @@ export const metadata: Metadata = {
         height: 72,
         alt: "Girish Sawant Portfolio Preview",
       },
+      {
+        url: "/images/profile.jpeg",
+        width: 512,
+        height: 512,
+        alt: "Girish Sawant Profile Photo",
+      },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Girish Sawant - Portfolio",
+    description:
+      "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
+    site: "@girishsawant999",
+    creator: "@girishsawant999",
+    images: ["/images/profile.jpeg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "icon",
+        url: "/images/logo.svg",
+      },
+    ],
+  },
+  metadataBase: new URL("https://girishsawant.vercel.app"),
 };
+//
 
 export default function RootLayout({
   children,
