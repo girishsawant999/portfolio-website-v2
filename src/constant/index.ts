@@ -86,6 +86,22 @@ export const PROJECTS = [
     link: "https://spotify-musix.netlify.app/",
   },
   {
+    key: "elc-toys",
+    title: "Elc Toys - E Commerce Website",
+    description:
+      "A vibrant e-commerce website for toys featuring product listings, dynamic search, filters, and a secure checkout experience. Designed with engaging visuals and optimized for mobile responsiveness to enhance customer shopping experience.",
+    skills: [
+      "React.js",
+      "Material UI",
+      "Bootstrap",
+      "Redux Saga",
+      "REST API",
+      "Payment Integration",
+      "Responsive Design",
+    ],
+    link: "https://elctoys.com/",
+  },
+  {
     key: "be-animated",
     title: "Be Animated - GIF Loader hub",
     description:
