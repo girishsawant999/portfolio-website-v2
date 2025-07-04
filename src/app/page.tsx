@@ -57,27 +57,24 @@ export default function Home() {
             Girish Sawant, a Frontend Artist
           </h1>
           <p className="heading-2 text-gray">
-            As a Frontend Tech Lead, I design and develop high-performance,
-            scalable web applications with a strong focus on modern JavaScript
-            ecosystems like React, TypeScript, and Next.js. I have led
-            large-scale frontend revamps for customer-facing platforms,
-            optimizing performance metrics such as LCP, CLS, and TTI. My
-            experience spans implementing modular monorepos, integrating SSR and
-            SSG workflows, and architecting microfrontend strategies for
-            continuous scalability. I leverage advanced tooling including Vite,
-            Webpack, and CI/CD systems to streamline builds and accelerate
-            deployments.
+            As a Frontend Tech Lead, I build scalable and high-performance web
+            applications. My focus is on modern JavaScript ecosystems like
+            React, TypeScript, and Next.js. I’ve led frontend revamps for
+            customer-facing platforms, improving performance metrics such as
+            LCP, CLS, and TTI. My experience includes modular monorepos, SSR and
+            SSG integration, and microfrontend strategies for scalability. I use
+            advanced tooling such as Vite, Webpack, and CI/CD systems to
+            streamline builds and speed up deployments.
           </p>
           <p className="heading-2 text-gray mt-4">
-            I’m driven by clean architecture and accessible, component-driven
-            design. My work includes building reusable UI libraries,
-            collaborating closely with product and design teams, and enforcing
-            testing best practices with tools like Jest and Testing Library. I
-            value mentorship and have actively guided junior engineers through
-            architecture decisions, code reviews, and agile delivery practices.
-            From debugging deep rendering issues to leading performance audits
-            with Lighthouse and Core Web Vitals, I bring a full-spectrum
-            approach to frontend excellence.
+            I care deeply about clean architecture and accessible UI systems. I
+            build reusable component libraries and collaborate closely with
+            product and design teams. I enforce testing standards using tools
+            like Jest and Testing Library. Mentoring junior engineers is
+            something I actively pursue. I guide them through code reviews,
+            architecture decisions, and agile delivery practices. From debugging
+            rendering issues to leading Lighthouse audits, I ensure every part
+            of the frontend delivers excellence.
           </p>
         </div>
         <div className="flex-1 justify-items-end relative">
