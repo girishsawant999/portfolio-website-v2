@@ -19,8 +19,7 @@ const inter = Inter({
 
 // ...existing code...
 export const metadata: Metadata = {
-  title:
-    "Girish Sawant - Portfolio | Frontend Tech Lead Building Scalable React Apps | Web developer",
+  title: "Girish Sawant | Frontend Tech Lead & React Developer",
   description:
     "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
   keywords: [
