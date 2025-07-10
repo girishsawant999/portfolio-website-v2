@@ -9,7 +9,7 @@ interface FullscreenVideoProps {
 
 export default function FullscreenVideo({ projectKey }: FullscreenVideoProps) {
   const poster = `/projects/${projectKey}/image.png`;
-  const previewSrc = `/api/video/projects/${projectKey}/video.mov`;
+  const previewSrc = `/projects/${projectKey}/video.mov`;
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
