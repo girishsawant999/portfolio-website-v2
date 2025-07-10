@@ -78,10 +78,7 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
           </a>
         </div>
         <div className="lg:col-span-7">
-          <FullscreenVideo
-            src={`/projects/${project.key}/video.mov`}
-            poster={`/projects/${project.key}/image.png`}
-          />
+          <FullscreenVideo projectKey={project.key} />
         </div>
       </div>
       <div className="w-full border-b-[1.5px] border-gray-900 dark:border-gray-400 mt-6"></div>
