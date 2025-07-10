@@ -57,24 +57,15 @@ export default function Home() {
             Girish Sawant, a Frontend Artist
           </h1>
           <p className="heading-2 text-gray">
-            As a Frontend Tech Lead, I build scalable and high-performance web
-            applications. My focus is on modern JavaScript ecosystems like
-            React, TypeScript, and Next.js. I’ve led frontend revamps for
-            customer-facing platforms, improving performance metrics such as
-            LCP, CLS, and TTI. My experience includes modular monorepos, SSR and
-            SSG integration, and microfrontend strategies for scalability. I use
-            advanced tooling such as Vite, Webpack, and CI/CD systems to
-            streamline builds and speed up deployments.
+            Frontend Tech Lead with startup experience, building products from
+            scratch using React, TypeScript, and Next.js. I focus on
+            performance, scalable architecture, and accessible UI. Skilled in
+            SSR, microfrontends, CI/CD, and mentoring dev teams from concept to
+            launch.
           </p>
           <p className="heading-2 text-gray mt-4">
-            I care deeply about clean architecture and accessible UI systems. I
-            build reusable component libraries and collaborate closely with
-            product and design teams. I enforce testing standards using tools
-            like Jest and Testing Library. Mentoring junior engineers is
-            something I actively pursue. I guide them through code reviews,
-            architecture decisions, and agile delivery practices. From debugging
-            rendering issues to leading Lighthouse audits, I ensure every part
-            of the frontend delivers excellence.
+            Beyond code, I mentor engineers, guide architecture decisions, and
+            drive delivery excellence from first commit to production.
           </p>
         </div>
         <div className="flex-1 justify-items-end relative">
