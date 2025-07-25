@@ -16,6 +16,7 @@ interface ProjectCardProps {
     description: string;
     skills?: string[] | string;
     link: string;
+    wip?: boolean;
   };
 }
 
@@ -77,7 +78,14 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
             </svg>
           </a>
         </div>
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 relative overflow-hidden">
+          {project.wip && (
+            <div className="absolute right-0 top-0 h-16 w-16 z-10">
+              <div className="absolute transform rotate-45 bg-foreground/50 text-center text-background font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                WIP
+              </div>
+            </div>
+          )}
           <FullscreenVideo projectKey={project.key} />
         </div>
       </div>

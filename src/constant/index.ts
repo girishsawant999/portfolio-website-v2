@@ -1,5 +1,14 @@
 export const PROJECTS = [
   {
+    key: "30days-of-gsap",
+    title: "30 Days of GSAP Animation Mastery",
+    description:
+      "A hands-on 30-day challenge dedicated to mastering GSAP animations. Each day showcases a unique animation concept, focusing on motion design, interactivity, and creative experimentation using GSAP's powerful toolkit.",
+    skills: ["GSAP", "Next.js", "Tailwind CSS", "TypeScript"],
+    link: "https://30days-of-gsap.vercel.app/",
+    wip: true,
+  },
+  {
     key: "stampmyvisa-biz",
     title: "StampMyVisa - Biz",
     description:
