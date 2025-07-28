@@ -159,4 +159,4 @@ export const PROJECTS = [
 ];
 
 export const RESUME_LINK =
-  "https://drive.google.com/file/d/19_ZqPrn0TRYKor3uMnJq4x0pXGG2MHH2/view?usp=sharing";
+  "https://drive.google.com/file/d/1apZq4DeXvRNJD7g5nnSPzBwzE0LuwBNB/view";
