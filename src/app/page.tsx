@@ -19,25 +19,37 @@ export default function Home() {
 
     const splitTextHeader = new SplitText("#hero-title", {
       type: "words",
+      wordsClass: "words",
+      onSplit: (self) => {
+        gsap.set(self.words, {
+          y: 20,
+        });
+      },
     });
 
     const splitTextDescription = new SplitText("#hero-section p", {
       type: "words",
+      wordsClass: "words",
+      onSplit: (self) => {
+        gsap.set(self.words, {
+          opacity: 0.2,
+        });
+      },
     });
 
-    tl.from(splitTextHeader.words, {
+    tl.to(splitTextHeader.words, {
       duration: 0.3,
-      y: 20,
-      opacity: 0,
+      y: 0,
+      opacity: 1,
       stagger: 0.05,
       ease: "power2.inOut",
     });
 
-    tl.from(
+    tl.to(
       splitTextDescription.words,
       {
         duration: 0.2,
-        opacity: 0.2,
+        opacity: 1,
         stagger: 0.1,
         ease: "power2.inOut",
       },
@@ -52,18 +64,21 @@ export default function Home() {
         className="flex flex-col md:flex-row justify-between w-full gap-10 md:gap-20"
       >
         <div className="flex-1">
-          <h1 id="hero-title" className="heading-1 mb-5 md:mb-8">
+          <h1
+            id="hero-title"
+            className="heading-1 mb-5 md:mb-8 [&_.words]:opacity-0"
+          >
             Hi, I’m <br />
             Girish Sawant, a Frontend Artist
           </h1>
-          <p className="heading-2 text-gray">
+          <p className="heading-2 text-gray [&_.words]:opacity-0">
             Frontend Tech Lead with startup experience, building products from
             scratch using React, TypeScript, and Next.js. I focus on
             performance, scalable architecture, and accessible UI. Skilled in
             SSR, microfrontends, CI/CD, and mentoring dev teams from concept to
             launch.
           </p>
-          <p className="heading-2 text-gray mt-4">
+          <p className="heading-2 text-gray [&_.words]:opacity-0 mt-4">
             Beyond code, I mentor engineers, guide architecture decisions, and
             drive delivery excellence from first commit to production.
           </p>
@@ -75,14 +90,14 @@ export default function Home() {
               alt="Profile picture of Girish Sawant"
               width={420}
               height={562}
-              className="object-cover dark:brightness-75"
+              className="object-cover dark:brightness-75 opacity-20 blur-xs"
               priority
               ref={imageRef}
               onLoad={() => {
-                gsap.from(imageRef.current, {
+                gsap.to(imageRef.current, {
                   duration: 0.2,
-                  opacity: 0.2,
-                  filter: "blur(4px)",
+                  opacity: 1,
+                  filter: "blur(0px)",
                   ease: "power2.inOut",
                 });
               }}
