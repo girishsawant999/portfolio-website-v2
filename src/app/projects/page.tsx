@@ -14,21 +14,29 @@ const Projects = () => {
     const tl = gsap.timeline();
     const splitTextHeader = new SplitText(".project-page-title", {
       type: "words",
+      wordsClass: "words",
+      onSplit: (self) => {
+        gsap.set(self.words, {
+          y: 20,
+        });
+      },
     });
 
     const splitTextDescription = new SplitText(".projects-page-description", {
       type: "words",
+      wordsClass: "words",
+      onSplit: (self) => {
+        gsap.set(self.words, {
+          opacity: 0.2,
+        });
+      },
     });
 
-    tl.from(splitTextHeader.words, {
+    tl.to(splitTextHeader.words, {
       duration: 0.3,
-      y: 20,
-      opacity: 0,
+      opacity: 1,
       stagger: 0.05,
       ease: "power2.inOut",
-      onStart: () => {
-        gsap.set(".projects-page-description", { opacity: 1 });
-      },
     });
 
     tl.from(".projects-arrow-icon", {
@@ -38,9 +46,9 @@ const Projects = () => {
       ease: "power2.inOut",
     });
 
-    tl.from(splitTextDescription.words, {
+    tl.to(splitTextDescription.words, {
       duration: 0.2,
-      opacity: 0.2,
+      opacity: 1,
       stagger: 0.05,
       ease: "power2.inOut",
     });
@@ -55,7 +63,7 @@ const Projects = () => {
     <>
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 md:mb-24">
         <div className="flex flex-row md:flex-col items-center md:items-start justify-center text-heading-1 mb-5 md:mb-8 gap-5 md:gap-10">
-          <h1 className="project-page-title heading-1">
+          <h1 className="project-page-title heading-1 [&_.words]:opacity-0">
             Recent Work and Projects
           </h1>
           <div className="flex justify-start">
@@ -76,7 +84,7 @@ const Projects = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <p className="heading-2 text-gray projects-page-description opacity-0">
+          <p className="heading-2 text-gray projects-page-description [&_.words]:opacity-0">
             From concept to execution—here’s a look at what I’ve been building
             lately. Each project reflects my focus on clean design, performance,
             and user experience.
