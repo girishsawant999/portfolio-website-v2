@@ -1,14 +1,5 @@
 export const PROJECTS = [
   {
-    key: "30days-of-gsap",
-    title: "30 Days of GSAP Animation Mastery",
-    description:
-      "A hands-on 30-day challenge dedicated to mastering GSAP animations. Each day showcases a unique animation concept, focusing on motion design, interactivity, and creative experimentation using GSAP's powerful toolkit.",
-    skills: ["GSAP", "Next.js", "Tailwind CSS", "TypeScript"],
-    link: "https://30days-of-gsap.vercel.app/",
-    wip: true,
-  },
-  {
     key: "stampmyvisa-biz",
     title: "StampMyVisa - Biz",
     description:
@@ -63,6 +54,22 @@ export const PROJECTS = [
     ],
     link: "https://esoterictrade.net/",
   },
+    {
+    key: "elc-toys",
+    title: "Elc Toys - E Commerce Website",
+    description:
+      "A vibrant e-commerce website for toys featuring product listings, dynamic search, filters, and a secure checkout experience. Designed with engaging visuals and optimized for mobile responsiveness to enhance customer shopping experience.",
+    skills: [
+      "React.js",
+      "Material UI",
+      "Bootstrap",
+      "Redux Saga",
+      "REST API",
+      "Payment Integration",
+      "Responsive Design",
+    ],
+    link: "https://elctoys.com/",
+  },
   {
     key: "npm-packages",
     title: "React NPM Packages",
@@ -79,6 +86,30 @@ export const PROJECTS = [
     ],
     link: "https://www.npmjs.com/~girishsawant999?activeTab=packages",
   },
+    {
+    key: "konveyor",
+    title: "Konveyor - API Product landing page",
+    description:
+      "A modern landing page for StampMyVisa Konveyor, showcasing a suite of embeddable travel APIs. Features interactive demos, responsive layouts, and clear documentation to drive developer adoption.",
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Figma",
+      "Landing Page Design",
+      "API Documentation",
+    ],
+    link: "https://konveyor.stampmyvisa.com/",
+  },
+    {
+    key: "30days-of-gsap",
+    title: "30 Days of GSAP Animation Mastery",
+    description:
+      "A hands-on 30-day challenge dedicated to mastering GSAP animations. Each day showcases a unique animation concept, focusing on motion design, interactivity, and creative experimentation using GSAP's powerful toolkit.",
+    skills: ["GSAP", "Next.js", "Tailwind CSS", "TypeScript"],
+    link: "https://30days-of-gsap.vercel.app/",
+    wip: true,
+  },
   {
     key: "spotify-clone",
     title: "Spotify Clone - Web App",
@@ -93,22 +124,6 @@ export const PROJECTS = [
       "Responsive Design",
     ],
     link: "https://spotify-musix.netlify.app/",
-  },
-  {
-    key: "elc-toys",
-    title: "Elc Toys - E Commerce Website",
-    description:
-      "A vibrant e-commerce website for toys featuring product listings, dynamic search, filters, and a secure checkout experience. Designed with engaging visuals and optimized for mobile responsiveness to enhance customer shopping experience.",
-    skills: [
-      "React.js",
-      "Material UI",
-      "Bootstrap",
-      "Redux Saga",
-      "REST API",
-      "Payment Integration",
-      "Responsive Design",
-    ],
-    link: "https://elctoys.com/",
   },
   {
     key: "be-animated",
@@ -140,21 +155,6 @@ export const PROJECTS = [
       "Responsive UI",
     ],
     link: "https://meetzy.netlify.app/",
-  },
-  {
-    key: "konveyor",
-    title: "Konveyor - API Product landing page",
-    description:
-      "A modern landing page for StampMyVisa Konveyor, showcasing a suite of embeddable travel APIs. Features interactive demos, responsive layouts, and clear documentation to drive developer adoption.",
-    skills: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Figma",
-      "Landing Page Design",
-      "API Documentation",
-    ],
-    link: "https://konveyor.stampmyvisa.com/",
   },
 ];
 
