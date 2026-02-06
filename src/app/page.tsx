@@ -153,7 +153,7 @@ export default function Home() {
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
               fill
-              className="object-cover dark:brightness-75 opacity-0 blur-md scale-110"
+              className="object-cover rounded-[3rem] dark:brightness-75 opacity-0 blur-md scale-110"
               priority
               ref={imageRef}
               onLoad={() => {
