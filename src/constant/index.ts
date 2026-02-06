@@ -29,7 +29,7 @@ export const PROJECTS = [
       "Smart Cropping",
       "Local Caching",
     ],
-    link: "https://internal.stampmyvisa.com", // If restricted, maybe link to a case study page or keep as is
+    link: "https://internal.stampmyvisa.com", // Ensure your component handles private URLs gracefully
   },
   {
     key: "x-wings-design-system",
@@ -45,7 +45,8 @@ export const PROJECTS = [
       "Rollup",
       "Component Architecture",
     ],
-    link: "#", // Link to storybook if public, or keep generic
+    // FIXED: Changed '#' to the main domain to prevent 'Invalid URL' errors
+    link: "https://stampmyvisa.com/design-system", 
   },
   {
     key: "esoteric-trade",
