@@ -131,6 +131,16 @@ export default function Home() {
               Okta SSO, Enterprise Security.
             </p>
           </div>
+          {/* New AI & Automation Section */}
+          <div className="flex gap-16">
+            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
+              AI & Emerging Tech
+            </h3>
+            <p className="body">
+              LLM Integration (OpenAI/Gemini APIs), AI-Driven Data Extraction, 
+              Prompt Engineering for Structured Outputs, GitHub Copilot & Cursor Workflows.
+            </p>
+          </div>
         </div>
       </section>
 
