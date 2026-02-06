@@ -19,41 +19,52 @@ export default function Home() {
     () => {
       const tl = gsap.timeline();
 
-      // --- 1. HERO TEXT REVEAL (Word Stagger) ---
+      // --- 1. HERO TEXT SETUP ---
       const splitTextHeader = new SplitText("#hero-title", {
         type: "words",
         wordsClass: "hero-words",
       });
 
-      gsap.set(splitTextHeader.words, { y: 50, opacity: 0 });
-
       const splitTextDescription = new SplitText("#hero-section p", {
         type: "words",
         wordsClass: "hero-desc-words",
       });
-      
-      gsap.set(splitTextDescription.words, { opacity: 0.2 });
 
-      tl.to(splitTextHeader.words, {
-        duration: 0.8,
-        y: 0,
-        opacity: 1,
-        stagger: 0.05,
-        ease: "power3.out",
-      })
-      .to(
-        splitTextDescription.words,
-        {
-          duration: 0.5,
+      // INITIAL STATES
+      // Header: Down and invisible
+      gsap.set(splitTextHeader.words, { y: 50, opacity: 0 });
+      // Description: COMPLETELY INVISIBLE (Stage 1: Opacity 0)
+      gsap.set(splitTextDescription.words, { opacity: 0 });
+
+      // --- ANIMATION SEQUENCE ---
+      tl
+        // 1. Reveal Header
+        .to(splitTextHeader.words, {
+          duration: 0.8,
+          y: 0,
           opacity: 1,
-          stagger: 0.02,
-          ease: "power2.out",
-        },
-        "-=0.4"
-      );
+          stagger: 0.05,
+          ease: "power3.out",
+        })
+        // 2. Fade Description to "Ghost State" (Stage 2: Opacity 0.2)
+        .to(
+          splitTextDescription.words,
+          {
+            duration: 1,
+            opacity: 0.2, // The "Ghost" text
+            ease: "power2.out",
+          },
+          "-=0.5" // Start while header is finishing
+        )
+        // 3. Ripple to Full Visibility (Stage 3: Opacity 1)
+        .to(splitTextDescription.words, {
+          duration: 0.6,
+          opacity: 1,
+          stagger: 0.03, // The "Reading" effect
+          ease: "power1.out",
+        });
 
-      // --- 2. HERO IMAGE PARALLAX (ScrollSmoother Effect) ---
-      // Replaced scrub: true with scrub: 1.5 to create the "lag" effect
+      // --- 2. HERO IMAGE PARALLAX ---
       gsap.to(".hero-image-wrapper", {
         yPercent: 20,
         ease: "none",
@@ -61,7 +72,7 @@ export default function Home() {
           trigger: "#hero-section",
           start: "top top",
           end: "bottom top",
-          scrub: 1.5, // 1.5s lag time creates the "ScrollSmoother" feel
+          scrub: 1.5, // Smooth lag effect
         },
       });
 
@@ -117,7 +128,8 @@ export default function Home() {
             Hi, I’m <br />
             Girish Sawant, a Senior Frontend Engineer & Architect
           </h1>
-          <div className="overflow-visible">
+          {/* Added min-h to prevent layout shift during font loading/splitting */}
+          <div className="overflow-visible min-h-[120px]">
             <p className="heading-2 text-gray">
               Senior Tech Lead with 6+ years of experience scaling engineering
               teams (0 to 10) and delivering enterprise-grade products from 0 to
@@ -136,7 +148,6 @@ export default function Home() {
         </div>
         
         <div className="flex-1 justify-items-end relative hero-image-wrapper">
-          {/* Added 'will-change-transform' for smoother performance */}
           <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4] will-change-transform">
             <Image
               src="/images/profile.jpeg"
