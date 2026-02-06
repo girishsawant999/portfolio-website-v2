@@ -53,11 +53,22 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
           </h2>
           <p className="text-lg text-body">{project.description}</p>
           {project.skills && (
-            <p className="text-sm text-[#606060]">
+            <div className="flex flex-wrap gap-2">
               {Array.isArray(project.skills)
-                ? project.skills.join(", ")
-                : project.skills}
-            </p>
+                ? project.skills.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-[#606060] text-white text-xs font-medium py-1 px-2 rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))
+                : (
+                  <span className="bg-[#606060] text-white text-xs font-medium py-1 px-2 rounded-full">
+                    {project.skills}
+                  </span>
+                )}
+            </div>
           )}
           <div className="flex-grow"></div>
           <a
