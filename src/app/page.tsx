@@ -120,17 +120,29 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Architecture & DevOps - Curated from Resume */}
-          <div className="flex gap-16">
-            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
-              Architecture & Ops
-            </h3>
-            <p className="body">
-              Node.js, Docker, AWS Amplify, GitHub Actions (CI/CD), Webpack,
-              Vite, Module Federation, Electron, Vitest (90% Coverage), Cypress,
-              Okta SSO, Enterprise Security.
-            </p>
-          </div>
+{/* Architecture & Ops - Updated */}
+<div className="flex gap-16">
+  <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
+    Architecture & Ops
+  </h3>
+  <p className="body">
+    Node.js, Docker, AWS Amplify, CI/CD, Micro-frontends, Module Federation, 
+    Electron.js, Vitest (90% Coverage).
+  </p>
+</div>
+
+{/* NEW: Security & Integrations Section */}
+<div className="flex gap-16">
+  <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
+    Security & Payments
+  </h3>
+  <p className="body">
+    Auth (Okta SSO, OAuth2, JWT), RBAC (Role-Based Access Control), 
+    Payment Gateways (Razorpay/Stripe Integration, Tabby pay later, Apple pay), Web Security (OWASP).
+  </p>
+</div>
+
+
           {/* New AI & Automation Section */}
           <div className="flex gap-16">
             <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
