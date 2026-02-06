@@ -261,8 +261,8 @@ export default function Home() {
             Ready to architect your next scalable product?
             <span className="inline-flex items-center ml-3 align-middle transition-transform duration-300 group-hover:translate-x-2">
               <svg
-                width="34"
-                height="34"
+                width="24"
+                height="24"
                 viewBox="0 0 24 21"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
