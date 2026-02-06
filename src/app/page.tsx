@@ -19,44 +19,41 @@ export default function Home() {
     () => {
       const tl = gsap.timeline();
 
-      // --- 1. HERO TEXT REVEAL ---
+      // --- 1. HERO TEXT REVEAL (Word Stagger) ---
       const splitTextHeader = new SplitText("#hero-title", {
         type: "words",
         wordsClass: "hero-words",
       });
 
-      // Set initial state for words
       gsap.set(splitTextHeader.words, { y: 50, opacity: 0 });
 
       const splitTextDescription = new SplitText("#hero-section p", {
-        type: "lines",
-        linesClass: "hero-lines",
+        type: "words",
+        wordsClass: "hero-desc-words",
       });
       
-      // Set initial state for lines
-      gsap.set(splitTextDescription.lines, { y: 20, opacity: 0 });
+      gsap.set(splitTextDescription.words, { opacity: 0.2 });
 
       tl.to(splitTextHeader.words, {
-        duration: 1,
+        duration: 0.8,
         y: 0,
         opacity: 1,
         stagger: 0.05,
         ease: "power3.out",
       })
       .to(
-        splitTextDescription.lines,
+        splitTextDescription.words,
         {
-          duration: 0.8,
-          y: 0,
+          duration: 0.5,
           opacity: 1,
-          stagger: 0.1,
+          stagger: 0.02,
           ease: "power2.out",
         },
-        "-=0.5"
+        "-=0.4"
       );
 
-      // --- 2. HERO IMAGE PARALLAX ---
-      // Moves the image container slightly slower than scroll for depth
+      // --- 2. HERO IMAGE PARALLAX (ScrollSmoother Effect) ---
+      // Replaced scrub: true with scrub: 1.5 to create the "lag" effect
       gsap.to(".hero-image-wrapper", {
         yPercent: 20,
         ease: "none",
@@ -64,12 +61,11 @@ export default function Home() {
           trigger: "#hero-section",
           start: "top top",
           end: "bottom top",
-          scrub: true,
+          scrub: 1.5, // 1.5s lag time creates the "ScrollSmoother" feel
         },
       });
 
       // --- 3. SECTIONS STAGGER REVEAL ---
-      // This grabs every "skill-group" and animates its children
       const sections = gsap.utils.toArray<HTMLElement>(".reveal-group");
       
       sections.forEach((section) => {
@@ -84,7 +80,7 @@ export default function Home() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 85%", // Starts when top of section hits 85% of viewport height
+              start: "top 85%",
               toggleActions: "play none none reverse",
             },
           }
@@ -101,17 +97,6 @@ export default function Home() {
           trigger: ".architectural-line",
           start: "top 90%",
         },
-      });
-
-      // --- 5. CONTACT ARROW LOOP ---
-      // A subtle breathing animation for the arrow
-      gsap.to(".contact-arrow", {
-        x: 10,
-        y: -10,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
       });
 
     },
@@ -132,7 +117,7 @@ export default function Home() {
             Hi, I’m <br />
             Girish Sawant, a Senior Frontend Engineer & Architect
           </h1>
-          <div className="overflow-hidden">
+          <div className="overflow-visible">
             <p className="heading-2 text-gray">
               Senior Tech Lead with 6+ years of experience scaling engineering
               teams (0 to 10) and delivering enterprise-grade products from 0 to
@@ -141,7 +126,7 @@ export default function Home() {
               and optimized build pipelines.
             </p>
           </div>
-          <div className="overflow-hidden mt-4">
+          <div className="overflow-visible mt-4">
             <p className="heading-2 text-gray">
               From architecting the &quot;Nucleus&quot; electron platform to
               defining company-wide design systems, I bridge the gap between
@@ -151,7 +136,8 @@ export default function Home() {
         </div>
         
         <div className="flex-1 justify-items-end relative hero-image-wrapper">
-          <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4]">
+          {/* Added 'will-change-transform' for smoother performance */}
+          <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4] will-change-transform">
             <Image
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
@@ -160,7 +146,6 @@ export default function Home() {
               priority
               ref={imageRef}
               onLoad={() => {
-                // Reveal image smoothly
                 gsap.to(imageRef.current, {
                   duration: 1.2,
                   opacity: 1,
@@ -255,14 +240,15 @@ export default function Home() {
       {/* Animated Line */}
       <hr className="architectural-line border-foreground border-t-2 origin-left" />
 
+      {/* Contact Section */}
       <section
         id="contact"
-        className="flex flex-col md:flex-row justify-between pt-16 gap-y-10 reveal-group"
+        className="flex flex-col md:flex-row justify-between pt-16 gap-y-10 reveal-group group"
       >
         <div className="max-w-full md:max-w-1/2">
-          <h3 className="heading-2 reveal-text">
+          <h3 className="heading-2 reveal-text inline">
             Ready to architect your next scalable product?
-            <span className="inline-block ml-6 contact-arrow">
+            <span className="inline-flex items-center ml-3 align-middle transition-transform duration-300 group-hover:translate-x-2">
               <svg
                 width="34"
                 height="34"
@@ -291,10 +277,10 @@ export default function Home() {
             <Link
               href={RESUME_LINK}
               target="_blank"
-              className="body w-fit hover:underline cursor-pointer group flex items-center gap-2"
+              className="body w-fit hover:underline cursor-pointer group/link flex items-center gap-2"
             >
               View Resume
-              <span className="group-hover:translate-x-1 transition-transform">↗</span>
+              <span className="group-hover/link:translate-x-1 transition-transform">↗</span>
             </Link>
 
             <a href="tel:+918796456149" className="body hover:underline">
