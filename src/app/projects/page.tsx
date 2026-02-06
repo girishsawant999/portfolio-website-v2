@@ -51,7 +51,7 @@ const Projects = () => {
       opacity: 1,
       stagger: 0.05,
       ease: "power2.inOut",
-    });
+    }, "<+=0.2"); // Slight overlap for better flow
 
     return () => {
       splitTextDescription.revert();
@@ -64,7 +64,7 @@ const Projects = () => {
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 md:mb-24">
         <div className="flex flex-row md:flex-col items-center md:items-start justify-center text-heading-1 mb-5 md:mb-8 gap-5 md:gap-10">
           <h1 className="project-page-title heading-1 [&_.words]:opacity-0">
-            Recent Work and Projects
+            Selected Work <br className="hidden md:block" />& Case Studies
           </h1>
           <div className="flex justify-start">
             <svg
@@ -85,13 +85,18 @@ const Projects = () => {
         </div>
         <div className="flex flex-col justify-center">
           <p className="heading-2 text-gray projects-page-description [&_.words]:opacity-0">
-            From concept to execution—here’s a look at what I’ve been building
-            lately. Each project reflects my focus on clean design, performance,
-            and user experience.
+            A look at how I solve complex engineering problems. From architecting 
+            scalable micro-frontends to building high-performance Electron apps, 
+            these case studies highlight my focus on stability, architecture, 
+            and business impact.
           </p>
         </div>
       </section>
 
+      {/* NOTE: Ensure your PROJECTS constant actually contains the 
+        heavy-hitter projects from your resume (Nucleus, Biz, X-Wings), 
+        not just calculator apps.
+      */}
       {PROJECTS.map((project, index) => (
         <ProjectCard key={project.key} index={index} project={project} />
       ))}
