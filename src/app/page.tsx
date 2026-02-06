@@ -148,12 +148,12 @@ export default function Home() {
         </div>
         
         <div className="flex-1 justify-items-end relative hero-image-wrapper">
-          <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4] will-change-transform">
+          <div className="relative rounded-[3rem] overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4] will-change-transform">
             <Image
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
               fill
-              className="object-cover rounded-[3rem] dark:brightness-75 opacity-0 blur-md scale-110"
+              className="object-cover dark:brightness-75 opacity-0 blur-md scale-110"
               priority
               ref={imageRef}
               onLoad={() => {
