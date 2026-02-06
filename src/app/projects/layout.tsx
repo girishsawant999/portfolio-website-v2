@@ -2,31 +2,31 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Projects by Girish Sawant | React & Frontend Engineering Portfolio",
+  title: "Engineering Case Studies | Girish Sawant",
   description:
-    "Discover a curated collection of real-world projects by Girish Sawant, showcasing expertise in React, TypeScript, and performance-driven frontend architecture. Explore scalable UI solutions, B2B platforms, and creative web experiences.",
+    "Explore how I architect scalable frontend solutions. Case studies on Micro-frontends, Electron-based desktop apps, Enterprise SaaS platforms, and Design Systems.",
   keywords: [
-    "Girish Sawant Projects",
-    "Frontend Projects",
-    "React Portfolio",
-    "TypeScript Projects",
-    "TailwindCSS",
-    "Web Development",
-    "B2B Web Applications",
-    "Next.js Projects",
-    "UI/UX Engineering",
     "Frontend Architecture",
-    "Responsive Web Apps",
-    "Creative Frontend Work",
-    "Microfrontend Projects",
-    "Scalable Web Interfaces",
-    "StampMyVisa",
-    "Esoteric Trade",
-    "Spotify",
-    "GIF - Be Animated",
-    "Meetzy",
-    "Konveyor",
+    "Engineering Case Studies",
+    "Enterprise SaaS",
+    "Electron.js",
+    "Micro-frontends",
+    "Design Systems",
+    "React Performance",
+    "System Design",
+    "StampMyVisa Biz",
+    "Nucleus Architecture",
+    "Next.js",
+    "TypeScript",
+    "B2B Applications",
+    "Girish Sawant",
   ],
+  openGraph: {
+    title: "Engineering Case Studies | Girish Sawant",
+    description:
+      "Deep dive into real-world architectural challenges: Scaling teams, building Design Systems, and optimizing high-performance React applications.",
+    type: "website",
+  },
 };
 
 const ProjectLayout = ({
@@ -34,7 +34,7 @@ const ProjectLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return children;
+  return <>{children}</>;
 };
 
 export default ProjectLayout;
