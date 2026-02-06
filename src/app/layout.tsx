@@ -17,62 +17,48 @@ const inter = Inter({
   weight: ["400", "500"], // Regular (400) and Medium (500)
 });
 
-// ...existing code...
 export const metadata: Metadata = {
-  title: "Girish Sawant | Frontend Tech Lead & React Developer",
+  // CHANGED: From "React Developer" to "Architect" & "Lead"
+  title: "Girish Sawant | Senior Frontend Architect & Tech Lead",
   description:
-    "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
+    "Senior Frontend Engineer with 6+ years of experience scaling engineering teams and architecting enterprise-grade applications. Expert in React, Micro-frontends, Electron, and Performance Optimization.",
   keywords: [
-    "Frontend Developer Resume",
-    "Developer Portfolio",
-    "Frontend Tech Lead",
-    "React Developer",
-    "TypeScript Developer",
-    "TailwindCSS",
-    "JavaScript Developer",
-    "Responsive Web Design",
-    "Web Developer Portfolio",
-    "UI/UX Developer",
-    "Frontend Architecture",
-    "Creative Developer",
+    "Senior Frontend Engineer",
+    "Frontend Architect",
+    "Tech Lead",
+    "Micro-frontends", // High value keyword
+    "System Design",
+    "Electron.js",
+    "React Performance",
+    "TypeScript",
+    "CI/CD Pipelines",
+    "Team Leadership",
+    "SaaS Architecture",
     "Next.js",
-    "Scalable Web Applications",
-    "Frontend Projects",
-    "Modern Web Development",
-    "Technical Skills",
-    "Developer Experience",
-    "Developer Case Studies",
-    "Code Quality",
     "Girish Sawant",
   ],
   openGraph: {
-    title: "Girish Sawant - Portfolio",
+    title: "Girish Sawant | Senior Frontend Architect",
     description:
-      "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
+      "Scaling teams and building high-performance architectures. View my case studies on Micro-frontends, Electron, and Enterprise SaaS.",
     url: "https://girishsawant.vercel.app",
     siteName: "Girish Sawant Portfolio",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/images/logo.svg",
-        width: 72,
-        height: 72,
-        alt: "Girish Sawant Portfolio Preview",
-      },
-      {
-        url: "/images/profile.jpeg",
+        url: "/images/profile.jpeg", // Always lead with the human face for portfolios
         width: 512,
         height: 512,
-        alt: "Girish Sawant Profile Photo",
+        alt: "Girish Sawant - Senior Frontend Lead",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Girish Sawant - Portfolio",
+    title: "Girish Sawant | Senior Frontend Architect",
     description:
-      "Experienced Frontend Developer skilled in React, TypeScript, and TailwindCSS. Explore resume, skills, and projects focused on scalable UI development.",
+      "Scaling teams and building high-performance architectures. View my case studies on Micro-frontends, Electron, and Enterprise SaaS.",
     site: "@girishsawant999",
     creator: "@girishsawant999",
     images: ["/images/profile.jpeg"],
@@ -90,7 +76,6 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://girishsawant.vercel.app"),
 };
-//
 
 export default function RootLayout({
   children,
@@ -100,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-container mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 py-6 gap-10 md:gap-20  md:py-12`}
+        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-container mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 py-6 gap-10 md:gap-20 md:py-12`}
       >
         <SmoothScrollProvider>
           <Header />
@@ -108,44 +93,38 @@ export default function RootLayout({
           <footer className="flex flex-col sm:flex-row items-center justify-between w-full gap-4 sm:gap-0 pt-8 border-t border-neutral-200 dark:border-neutral-800 mt-8">
             <div className="flex items-center gap-4">
               <span className="navigation text-secondary">
-                Girish Sawant ⏤ 2025
+                © {new Date().getFullYear()} Girish Sawant. All rights reserved.
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8 justify-center sm:justify-end">
               <Link
                 href="https://www.npmjs.com/~girishsawant999"
                 target="_blank"
-                className="navigation"
+                className="navigation hover:text-foreground transition-colors"
               >
-                Npm
-              </Link>
-              <Link
-                href="https://dev.to/girishsawant999"
-                target="_blank"
-                className="navigation"
-              >
-                Dev.to
-              </Link>
-              <Link
-                href="https://cssbattle.dev/player/girish_sawant"
-                target="_blank"
-                className="navigation"
-              >
-                CSS Battle
-              </Link>
-              <Link
-                href="https://in.linkedin.com/in/girishsawant999"
-                target="_blank"
-                className="navigation"
-              >
-                LinkedIn
+                NPM
               </Link>
               <Link
                 href="https://github.com/girishsawant999"
                 target="_blank"
-                className="navigation"
+                className="navigation hover:text-foreground transition-colors"
               >
-                Github
+                GitHub
+              </Link>
+              <Link
+                href="https://in.linkedin.com/in/girishsawant999"
+                target="_blank"
+                className="navigation hover:text-foreground transition-colors"
+              >
+                LinkedIn
+              </Link>
+              {/* Removed CSS Battle. Keep Dev.to only if you have technical articles there. */}
+              <Link
+                href="https://dev.to/girishsawant999"
+                target="_blank"
+                className="navigation hover:text-foreground transition-colors"
+              >
+                Articles
               </Link>
             </div>
           </footer>
