@@ -69,18 +69,19 @@ export default function Home() {
             className="heading-1 mb-5 md:mb-8 [&_.words]:opacity-0"
           >
             Hi, I’m <br />
-            Girish Sawant, a Frontend Artist
+            Girish Sawant, a Senior Frontend Engineer & Architect
           </h1>
           <p className="heading-2 text-gray [&_.words]:opacity-0">
-            Frontend Tech Lead with startup experience, building products from
-            scratch using React, TypeScript, and Next.js. I focus on
-            performance, scalable architecture, and accessible UI. Skilled in
-            SSR, microfrontends, CI/CD, and mentoring dev teams from concept to
-            launch.
+            Senior Tech Lead with 6+ years of experience scaling engineering
+            teams (0 to 10) and delivering enterprise-grade products from 0 to
+            1. I specialize in React/TypeScript architectures, having reduced
+            application load times by ~40% through micro-frontend implementation
+            and optimized build pipelines.
           </p>
           <p className="heading-2 text-gray [&_.words]:opacity-0 mt-4">
-            Beyond code, I mentor engineers, guide architecture decisions, and
-            drive delivery excellence from first commit to production.
+            From architecting the &quot;Nucleus&quot; electron platform to
+            defining company-wide design systems, I bridge the gap between
+            complex product requirements and engineering execution.
           </p>
         </div>
         <div className="flex-1 justify-items-end relative">
@@ -108,33 +109,56 @@ export default function Home() {
 
       <section id="skills" className="flex flex-col gap-20 pt-32 pb-20">
         <div className="flex flex-col gap-20 max-w-full md:max-w-1/2">
+          {/* Main Skills */}
           <div className="primary-skills flex gap-16">
             <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
-              Main Skills
+              Core Stack
             </h3>
             <p className="body">
-              React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS,
-              GSAP, Framer Motion
+              React, Next.js, TypeScript, Micro-frontends, Redux, TanStack
+              Query, Tailwind CSS, GSAP.
             </p>
           </div>
+
+          {/* Architecture & DevOps - Curated from Resume */}
           <div className="flex gap-16">
             <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
-              Other Skills
+              Architecture & Ops
             </h3>
             <p className="body">
-              {/* Skill other than frontend */}
-              Git, GitHub, Figma, Webpack, Vite, Node.js, Express.js, MongoDB,
-              PostgreSQL, MySQL, REST APIs, GraphQL, Agile Methodologies,
-              Responsive Design, UI/UX Design, Cross-Browser Compatibility,
-              Performance Optimization, Testing and Debugging, CI/CD, DevOps,
-              Cloud Services (AWS, Azure), SEO, Accessibility (WCAG), Web
-              Security, Content Management Systems (CMS), E-commerce Platforms,
-              Progressive Web Apps (PWAs), Mobile-First Design, Agile/Scrum
-              Methodologies, Version Control (Git), Code Review and
-              Collaboration, Continuous Integration/Continuous Deployment
-              (CI/CD), Test-Driven Development (TDD), Pair Programming, Agile
-              Methodologies, DevOps
+              Node.js, Docker, AWS Amplify, GitHub Actions (CI/CD), Webpack,
+              Vite, Module Federation, Electron, Vitest (90% Coverage), Cypress,
+              Okta SSO, Enterprise Security.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* New Section: Key Achievements / Impact */}
+      <section id="impact" className="flex flex-col gap-20 pb-20">
+        <div className="flex flex-col gap-20 max-w-full md:max-w-1/2">
+          <div className="flex gap-16">
+            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap">
+              Key Achievements
+            </h3>
+            <div className="body flex flex-col gap-4">
+              <p>
+                • Scaled engineering teams from 0 to 10 members, managing
+                hiring and mentorship.
+              </p>
+              <p>
+                • Reduced initial load times by ~40% and improved Core Web
+                Vitals via code-splitting.
+              </p>
+              <p>
+                • Enforced code quality standards achieving 90%+ unit test
+                coverage with Vitest.
+              </p>
+              <p>
+                • Architected &quot;Biz&quot; (AI-powered B2B platform) and
+                &quot;X-Wings&quot; (Shared Design System).
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -147,7 +171,7 @@ export default function Home() {
       >
         <div className="max-w-full md:max-w-1/3">
           <h3 className="heading-2">
-            I am thrilled to answer to your next project
+            Ready to architect your next scalable product?
             <svg
               width="24"
               height="21"
