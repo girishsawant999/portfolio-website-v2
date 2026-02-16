@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/images/profile.jpeg", // Always lead with the human face for portfolios
-        width: 512,
-        height: 512,
-        alt: "Girish Sawant - Senior Frontend Lead",
+        url: "/images/cover.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Girish Sawant - Senior Frontend Architect & Tech Lead",
       },
     ],
   },
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
       "Scaling teams and building high-performance architectures. View my case studies on Micro-frontends, Electron, and Enterprise SaaS.",
     site: "@girishsawant999",
     creator: "@girishsawant999",
-    images: ["/images/profile.jpeg"],
+    images: ["/images/cover.jpeg"],
   },
   icons: {
     icon: "/favicon.ico",
