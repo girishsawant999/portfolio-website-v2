@@ -31,38 +31,46 @@ export default function Home() {
       });
 
       // INITIAL STATES
+      // Clear parent element opacity so GSAP can control individual words
+      gsap.set("#hero-title", { opacity: 1 });
+      gsap.set("#hero-section p", { opacity: 1 });
       // Header: Down and invisible
       gsap.set(splitTextHeader.words, { y: 50, opacity: 0 });
-      // Description: COMPLETELY INVISIBLE (Stage 1: Opacity 0)
+      // Description: Completely invisible
       gsap.set(splitTextDescription.words, { opacity: 0 });
 
       // --- ANIMATION SEQUENCE ---
-      tl
-        // 1. Reveal Header
-        .to(splitTextHeader.words, {
-          duration: 0.8,
-          y: 0,
-          opacity: 1,
-          stagger: 0.05,
-          ease: "power3.out",
-        })
-        // 2. Fade Description to "Ghost State" (Stage 2: Opacity 0.2)
+      // 1. Reveal Header on mount
+      tl.to(splitTextHeader.words, {
+        duration: 0.8,
+        y: 0,
+        opacity: 1,
+        stagger: 0.05,
+        ease: "power3.out",
+      }).to(splitTextDescription.words, { opacity: 0.2 }, "-=0.5");
+
+      // 2. Description animation triggered by scroll - word by word
+      const descriptionTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#hero-section p",
+          start: "clamp(top 60%)", // Start when the top of the paragraph hits the middle of the viewport
+          end: "clamp(top top)",
+          scrub: 1.5,
+          once: true, // Only trigger once
+        },
+      });
+
+      descriptionTl
+        // Ripple to Full Visibility (word by word with stagger)
         .to(
           splitTextDescription.words,
           {
-            duration: 1,
-            opacity: 0.2, // The "Ghost" text
-            ease: "power2.out",
+            opacity: 1,
+            stagger: 0.08,
+            ease: "none",
           },
-          "-=0.5" // Start while header is finishing
-        )
-        // 3. Ripple to Full Visibility (Stage 3: Opacity 1)
-        .to(splitTextDescription.words, {
-          duration: 0.6,
-          opacity: 1,
-          stagger: 0.03, // The "Reading" effect
-          ease: "power1.out",
-        });
+          0,
+        );
 
       // --- 2. HERO IMAGE PARALLAX ---
       gsap.to(".hero-image-wrapper", {
@@ -78,7 +86,7 @@ export default function Home() {
 
       // --- 3. SECTIONS STAGGER REVEAL ---
       const sections = gsap.utils.toArray<HTMLElement>(".reveal-group");
-      
+
       sections.forEach((section) => {
         gsap.fromTo(
           section.querySelectorAll(".reveal-text"),
@@ -94,24 +102,27 @@ export default function Home() {
               start: "top 85%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       });
 
       // --- 4. LINE DRAWING ANIMATION ---
-      gsap.from(".architectural-line", {
-        scaleX: 0,
-        transformOrigin: "left center",
-        duration: 1.5,
-        ease: "power4.inOut",
-        scrollTrigger: {
-          trigger: ".architectural-line",
-          start: "top 90%",
+      gsap.fromTo(
+        ".architectural-line",
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          transformOrigin: "left center",
+          duration: 1.5,
+          ease: "power4.inOut",
+          scrollTrigger: {
+            trigger: ".architectural-line",
+            start: "top 90%",
+          },
         },
-      });
-
+      );
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -123,30 +134,30 @@ export default function Home() {
         <div className="flex-1 flex flex-col justify-center">
           <h1
             id="hero-title"
-            className="heading-1 mb-5 md:mb-8 overflow-hidden"
+            className="heading-1 mb-5 md:mb-8 overflow-hidden opacity-0"
           >
             Hi, I’m <br />
             Girish Sawant, a Senior Frontend Engineer & Architect
           </h1>
           {/* Added min-h to prevent layout shift during font loading/splitting */}
           <div className="overflow-visible min-h-[120px]">
-            <p className="heading-2 text-gray">
+            <p className="heading-2 text-gray opacity-0">
               Senior Tech Lead with 6+ years of experience scaling engineering
               teams (0 to 10) and delivering enterprise-grade products from 0 to
               1. I specialize in React/TypeScript architectures, having reduced
-              application load times by ~40% through micro-frontend implementation
-              and optimized build pipelines.
+              application load times by ~40% through micro-frontend
+              implementation and optimized build pipelines.
             </p>
           </div>
           <div className="overflow-visible mt-4">
-            <p className="heading-2 text-gray">
+            <p className="heading-2 text-gray opacity-0">
               From architecting the &quot;Nucleus&quot; electron platform to
               defining company-wide design systems, I bridge the gap between
               complex product requirements and engineering execution.
             </p>
           </div>
         </div>
-        
+
         <div className="flex-1 justify-items-end relative hero-image-wrapper">
           <div className="relative rounded-[3rem] overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4] will-change-transform">
             <Image
@@ -172,7 +183,6 @@ export default function Home() {
 
       <section id="skills" className="flex flex-col gap-20 pt-32 pb-20">
         <div className="flex flex-col gap-20 max-w-full md:max-w-3/4">
-          
           {/* Main Skills */}
           <div className="primary-skills flex flex-col md:flex-row gap-8 md:gap-16 reveal-group">
             <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap reveal-text">
@@ -190,8 +200,8 @@ export default function Home() {
               Architecture & Ops
             </h3>
             <p className="body flex-[3] reveal-text">
-              Node.js, Docker, AWS Amplify, CI/CD, Micro-frontends, Module Federation, 
-              Electron.js, Vitest (90% Coverage).
+              Node.js, Docker, AWS Amplify, CI/CD, Micro-frontends, Module
+              Federation, Electron.js, Vitest (90% Coverage).
             </p>
           </div>
 
@@ -201,8 +211,9 @@ export default function Home() {
               Security & Payments
             </h3>
             <p className="body flex-[3] reveal-text">
-              Auth (Okta SSO, OAuth2, JWT), RBAC (Role-Based Access Control), 
-              Payment Gateways (Razorpay/Stripe Integration, Tabby pay later, Apple pay), Web Security (OWASP).
+              Auth (Okta SSO, OAuth2, JWT), RBAC (Role-Based Access Control),
+              Payment Gateways (Razorpay/Stripe Integration, Tabby pay later,
+              Apple pay), Web Security (OWASP).
             </p>
           </div>
 
@@ -212,8 +223,9 @@ export default function Home() {
               AI & Emerging Tech
             </h3>
             <p className="body flex-[3] reveal-text">
-              LLM Integration (OpenAI/Gemini APIs), AI-Driven Data Extraction, 
-              Prompt Engineering for Structured Outputs, GitHub Copilot & Cursor Workflows.
+              LLM Integration (OpenAI/Gemini APIs), AI-Driven Data Extraction,
+              Prompt Engineering for Structured Outputs, GitHub Copilot & Cursor
+              Workflows.
             </p>
           </div>
         </div>
@@ -228,8 +240,8 @@ export default function Home() {
             </h3>
             <div className="body flex-[3] flex flex-col gap-4">
               <p className="reveal-text">
-                • Scaled engineering teams from 0 to 10 members, managing
-                hiring and mentorship.
+                • Scaled engineering teams from 0 to 10 members, managing hiring
+                and mentorship.
               </p>
               <p className="reveal-text">
                 • Reduced initial load times by ~40% and improved Core Web
@@ -291,7 +303,20 @@ export default function Home() {
               className="body w-fit hover:underline cursor-pointer group/link flex items-center gap-2"
             >
               View Resume
-              <span className="group-hover/link:translate-x-1 transition-transform">↗</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="inline-block -rotate-45"
+              >
+                <path
+                  d="M-5.24032e-07 9.01154L-3.92898e-07 12.0115L18.3146 12.0115L11.3126 18.9462L13.4097 21L24 10.5115L13.4097 1.32119e-06L11.3126 2.1L18.3146 9.01154L-5.24032e-07 9.01154Z"
+                  fill="#181717"
+                  className="fill-current"
+                />
+              </svg>
             </Link>
 
             <a href="tel:+918796456149" className="body hover:underline">

@@ -46,12 +46,16 @@ const Projects = () => {
       ease: "power2.inOut",
     });
 
-    tl.to(splitTextDescription.words, {
-      duration: 0.2,
-      opacity: 1,
-      stagger: 0.05,
-      ease: "power2.inOut",
-    }, "<+=0.2"); // Slight overlap for better flow
+    tl.to(
+      splitTextDescription.words,
+      {
+        duration: 0.2,
+        opacity: 1,
+        stagger: 0.05,
+        ease: "power2.inOut",
+      },
+      "<+=0.2",
+    ); // Slight overlap for better flow
 
     return () => {
       splitTextDescription.revert();
@@ -85,10 +89,10 @@ const Projects = () => {
         </div>
         <div className="flex flex-col justify-center">
           <p className="heading-2 text-gray projects-page-description [&_.words]:opacity-0">
-            A look at how I solve complex engineering problems. From architecting 
-            scalable micro-frontends to building high-performance Electron apps, 
-            these case studies highlight my focus on stability, architecture, 
-            and business impact.
+            A look at how I solve complex engineering problems. From
+            architecting scalable micro-frontends to building high-performance
+            Electron apps, these case studies highlight my focus on stability,
+            architecture, and business impact.
           </p>
         </div>
       </section>
