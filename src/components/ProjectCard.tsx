@@ -1,140 +1,161 @@
 "use client";
 
+import ProjectCard from "@/components/ProjectCard";
+import { PROJECTS } from "@/constant";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { useRef } from "react";
-import FullscreenVideo from "./FullscreenVideo";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
-interface ProjectCardProps {
-  index: number;
-  project: {
-    key: string;
-    title: string;
-    description: string;
-    skills?: string[] | string;
-    link: string;
-    wip?: boolean;
-    color?: string; // Optional: background color for variety
-  };
-}
-
-const ProjectCard = ({ index, project }: ProjectCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+const Projects = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const ctx = gsap.context(() => {
-      // Fade & slide up entrance, simplified for maximum readability
-      gsap.fromTo(
-        cardRef.current,
-        {
-          y: 60,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-    }, cardRef);
+    let splitTextHeader: SplitText | null = null;
+    let splitTextDescription: SplitText | null = null;
 
-    return () => ctx.revert();
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      splitTextHeader = new SplitText(".project-page-title", {
+        type: "lines, words",
+        linesClass: "project-title-line",
+        wordsClass: "words",
+        onSplit: (self) => {
+          gsap.set(self.lines, { overflow: "hidden" });
+          gsap.set(self.words, {
+            yPercent: 115,
+            rotate: 4,
+            opacity: 0,
+            transformOrigin: "left bottom",
+          });
+        },
+      });
+
+      splitTextDescription = new SplitText(".projects-page-description", {
+        type: "lines",
+        linesClass: "project-description-line",
+        onSplit: (self) => {
+          gsap.set(self.lines, { overflow: "hidden" });
+          gsap.set(self.lines, {
+            yPercent: 100,
+            opacity: 0,
+          });
+        },
+      });
+
+      tl.from(".projects-kicker", {
+        y: 18,
+        opacity: 0,
+        duration: 0.45,
+      })
+        .from(
+          ".projects-divider",
+          {
+            scaleX: 0,
+            transformOrigin: "left center",
+            duration: 0.6,
+          },
+          "<0.1",
+        )
+        .to(
+          splitTextHeader.words,
+          {
+            duration: 0.9,
+            yPercent: 0,
+            rotate: 0,
+            opacity: 1,
+            stagger: 0.04,
+            ease: "power4.out",
+          },
+          "<0.1",
+        )
+        .from(
+          ".projects-arrow-icon",
+          {
+            duration: 0.7,
+            y: -28,
+            x: -10,
+            rotate: -18,
+            opacity: 0,
+          },
+          "<0.2",
+        )
+        .to(
+          splitTextDescription.lines,
+          {
+            duration: 0.7,
+            yPercent: 0,
+            opacity: 1,
+            stagger: 0.1,
+          },
+          "<0.1",
+        );
+
+      gsap.to(".projects-arrow-icon", {
+        y: 8,
+        duration: 1.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: tl.duration() - 0.2,
+      });
+    }, pageRef);
+
+    return () => {
+      splitTextHeader?.revert();
+      splitTextDescription?.revert();
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <div className="w-full flex items-center justify-center pb-12 md:pb-24">
-      <article
-        ref={cardRef}
-        className="w-full h-auto bg-white dark:bg-[#111111] border border-gray-200 dark:border-gray-800 rounded-3xl overflow-hidden shadow-xl dark:shadow-none flex flex-col relative"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 flex-1">
-          {/* Text Content */}
-          <div className="lg:col-span-5 p-6 md:p-8 lg:p-10 flex flex-col justify-center bg-white dark:bg-[#111111] z-10 w-full h-full">
-            <div className="flex-1">
-              <span className="text-sm font-bold font-dm-sans tracking-widest uppercase text-gray-400 mb-3 block">
-                {String(index + 1).padStart(2, "0")} / {project.title}
-              </span>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-heading-1 leading-tight mb-4">
-                {project.title}
-              </h2>
-              <p className="text-sm lg:text-base text-body mb-6 leading-relaxed line-clamp-4">
-                {project.description}
-              </p>
-
-              {project.skills && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {Array.isArray(project.skills) ? (
-                    project.skills.map((skill, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2.5 py-1 bg-gray-100 dark:bg-[#1a1a1a] text-[10px] sm:text-xs font-medium text-heading-2 rounded-full border border-gray-200/60 dark:border-gray-800/60"
-                      >
-                        {skill}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="px-2.5 py-1 bg-gray-100 dark:bg-[#1a1a1a] text-[10px] sm:text-xs font-medium text-heading-2 rounded-full border border-gray-200/60 dark:border-gray-800/60">
-                      {project.skills}
-                    </span>
-                  )}
-                </div>
-              )}
-            </div>
-
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 text-sm font-medium text-heading-1 w-fit mt-auto pt-2"
-            >
-              <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                >
-                  <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z" />
-                </svg>
-              </div>
-              <span className="relative overflow-hidden">
-                <span className="block transition-transform duration-300 group-hover:-translate-y-full">
-                  {project.link.replace(/https?:\/\//, "")}
-                </span>
-                <span className="block absolute inset-0 transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-gray-500">
-                  Visit project
-                </span>
-              </span>
-            </a>
+    <div ref={pageRef}>
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 md:mb-24">
+        <div className="flex flex-row md:flex-col items-center md:items-start justify-center text-heading-1 mb-5 md:mb-8 gap-5 md:gap-10">
+          <div className="flex flex-col gap-4 md:gap-6">
+            <span className="projects-kicker text-xs sm:text-sm uppercase tracking-[0.3em] text-gray-500">
+              Project archive
+            </span>
+            <div className="projects-divider h-px w-28 bg-gray-300 dark:bg-gray-700" />
           </div>
-
-          {/* Video / Image Display */}
-          <div className="lg:col-span-7 relative bg-gray-50 dark:bg-[#0a0a0a] flex items-center justify-center p-4 sm:p-6 lg:p-8 lg:border-l border-gray-200 dark:border-gray-800">
-            {project.wip && (
-              <div className="project-card-ribbon absolute right-0 top-0 h-16 w-16 sm:h-20 sm:w-20 z-20 overflow-hidden\">
-                <div className="absolute transform rotate-45 bg-yellow-400 text-black text-[10px] font-bold tracking-widest py-1 -right-7 top-5 w-[130px] text-center shadow-lg\">
-                  WIP
-                </div>
-              </div>
-            )}
-            <div className="w-full relative rounded-lg overflow-hidden shadow-xl border border-gray-200/80 dark:border-gray-800/80 aspect-video flex items-center bg-black">
-              <FullscreenVideo projectKey={project.key} />
-            </div>
+          <h1 className="project-page-title heading-1">
+            Selected Work <br className="hidden md:block" />& Case Studies
+          </h1>
+          <div className="flex justify-start">
+            <svg
+              width={34}
+              height={39}
+              viewBox="0 0 34 39"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              className="projects-arrow-icon"
+            >
+              <path
+                d="M19.2187 0.181824H14.4176V29.2102L3.31959 18.1122L0.0326538 21.4361L16.8182 38.2216L33.6406 21.4361L30.2798 18.1122L19.2187 29.2102V0.181824Z"
+                fill="currentColor"
+              />
+            </svg>
           </div>
         </div>
-      </article>
+        <div className="flex flex-col justify-center">
+          <p className="heading-2 text-gray projects-page-description">
+            A look at how I solve complex engineering problems. From
+            architecting scalable micro-frontends to building high-performance
+            Electron apps, these case studies highlight my focus on stability,
+            architecture, and business impact.
+          </p>
+        </div>
+      </section>
+
+      {PROJECTS.map((project, index) => (
+        <ProjectCard key={project.key} index={index} project={project} />
+      ))}
     </div>
   );
 };
 
-export default ProjectCard;
+export default Projects;
