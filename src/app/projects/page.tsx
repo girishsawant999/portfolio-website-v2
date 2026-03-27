@@ -18,89 +18,88 @@ const Projects = () => {
     let splitTextDescription: SplitText | null = null;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
       splitTextHeader = new SplitText(".project-page-title", {
         type: "lines, words",
-        linesClass: "project-title-line",
-        wordsClass: "words",
-        onSplit: (self) => {
-          gsap.set(self.lines, { overflow: "hidden" });
-          gsap.set(self.words, {
-            yPercent: 115,
-            rotate: 4,
-            opacity: 0,
-            transformOrigin: "left bottom",
-          });
-        },
+        linesClass: "overflow-hidden",
+        wordsClass: "project-title-word",
       });
 
       splitTextDescription = new SplitText(".projects-page-description", {
         type: "lines",
-        linesClass: "project-description-line",
-        onSplit: (self) => {
-          gsap.set(self.lines, { overflow: "hidden" });
-          gsap.set(self.lines, {
-            yPercent: 100,
-            opacity: 0,
-          });
-        },
+        linesClass: "overflow-hidden",
+        wordsClass: "project-desc-line",
       });
 
-      tl.from(".projects-kicker", {
-        y: 18,
-        opacity: 0,
-        duration: 0.45,
+      // Initial states to prevent flicker
+      gsap.set(".projects-kicker", { opacity: 0, x: -15 });
+      gsap.set(".projects-divider", {
+        scaleX: 0,
+        transformOrigin: "left center",
+      });
+      gsap.set(splitTextHeader.words, { yPercent: 120 });
+      gsap.set(splitTextDescription.lines, { yPercent: 120, opacity: 0 });
+      gsap.set(".scroll-prompt-text", { opacity: 0, y: 15 });
+      gsap.set(".projects-arrow-icon", { scale: 0, opacity: 0 });
+
+      tl.to(".projects-kicker", {
+        opacity: 1,
+        x: 0,
+        duration: 1,
       })
-        .from(
+        .to(
           ".projects-divider",
-          {
-            scaleX: 0,
-            transformOrigin: "left center",
-            duration: 0.6,
-          },
+          { scaleX: 1, duration: 1.2, ease: "power3.inOut" },
           "<0.1",
         )
         .to(
           splitTextHeader.words,
           {
-            duration: 0.9,
             yPercent: 0,
-            rotate: 0,
-            opacity: 1,
-            stagger: 0.04,
-            ease: "power4.out",
-          },
-          "<0.1",
-        )
-        .from(
-          ".projects-arrow-icon",
-          {
-            duration: 0.7,
-            y: -28,
-            x: -10,
-            rotate: -18,
-            opacity: 0,
+            stagger: 0.05,
+            duration: 1.2,
           },
           "<0.2",
         )
         .to(
           splitTextDescription.lines,
           {
-            duration: 0.7,
             yPercent: 0,
             opacity: 1,
             stagger: 0.1,
+            duration: 1.2,
+          },
+          "<0.3",
+        )
+        .to(
+          ".scroll-prompt-text",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+          },
+          "<0.5",
+        )
+        .to(
+          ".projects-arrow-icon",
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "back.out(2)",
           },
           "<0.1",
         );
 
-      gsap.to(".projects-arrow-icon", {
-        y: 8,
-        duration: 1.4,
+      // Subtle bounce for arrow
+      gsap.to(".projects-arrow-icon svg", {
+        y: 4,
+        duration: 1.2,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut",
-        delay: tl.duration() - 0.2,
+        ease: "power1.inOut",
+        delay: 2,
       });
     }, pageRef);
 
@@ -113,41 +112,49 @@ const Projects = () => {
 
   return (
     <div ref={pageRef}>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 md:mb-24">
-        <div className="flex flex-row md:flex-col items-center md:items-start justify-center text-heading-1 mb-5 md:mb-8 gap-5 md:gap-10">
-          <div className="flex flex-col gap-4 md:gap-6">
-            <span className="projects-kicker text-xs sm:text-sm uppercase tracking-[0.3em] text-gray-500">
-              Project archive
+      <section className="flex flex-col lg:flex-row gap-12 lg:gap-24 mb-16 md:mb-32 pt-6 md:pt-12">
+        <div className="flex-1 flex flex-col items-start justify-start gap-6 md:gap-8">
+          <div className="flex items-center gap-6 w-full">
+            <span className="projects-kicker text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
+              Featured Works
             </span>
-            <div className="projects-divider h-px w-28 bg-gray-300 dark:bg-gray-700" />
+            <div className="projects-divider h-0.5 flex-1 max-w-25 bg-secondary/30 dark:bg-secondary/50" />
           </div>
-          <h1 className="project-page-title heading-1">
-            Selected Work <br className="hidden md:block" />& Case Studies
+          <h1 className="project-page-title text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-dm-sans font-medium tracking-tight leading-[1.05]">
+            Architecting <br className="hidden sm:block" /> Scalable Solutions.
           </h1>
-          <div className="flex justify-start">
-            <svg
-              width={34}
-              height={39}
-              viewBox="0 0 34 39"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              className="projects-arrow-icon"
-            >
-              <path
-                d="M19.2187 0.181824H14.4176V29.2102L3.31959 18.1122L0.0326538 21.4361L16.8182 38.2216L33.6406 21.4361L30.2798 18.1122L19.2187 29.2102V0.181824Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
         </div>
-        <div className="flex flex-col justify-center">
-          <p className="heading-2 text-gray projects-page-description">
-            A look at how I solve complex engineering problems. From
-            architecting scalable micro-frontends to building high-performance
-            Electron apps, these case studies highlight my focus on stability,
-            architecture, and business impact.
+
+        <div className="flex-1 flex flex-col justify-end gap-10 lg:pb-2">
+          <p className="projects-page-description text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed max-w-xl">
+            Real-world enterprise solutions without the marketing speak. From
+            writing offline-first Electron desktops for ops teams to scaling
+            high-performance micro-frontends—this is how I turn abstract
+            business logic into stable, scalable software.
           </p>
+
+          <div className="flex items-center gap-5 text-sm font-dm-sans font-semibold uppercase tracking-widest group w-fit cursor-default">
+            <span className="scroll-prompt-text text-foreground">
+              Explore Output
+            </span>
+            <div className="projects-arrow-icon w-11 h-11 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center bg-transparent group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+              <svg
+                width="14"
+                height="15"
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 1V13.5M7 13.5L13 7.5M7 13.5L1 7.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 

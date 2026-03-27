@@ -173,7 +173,7 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="project-link group flex items-center gap-3 text-sm font-medium text-heading-1 w-fit mt-auto pt-2"
+              className="project-link group flex items-center gap-3 text-sm font-medium text-heading-1 w-fit max-w-full mt-auto pt-2"
             >
               <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
                 <svg
@@ -187,7 +187,10 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
                 </svg>
               </div>
               <span className="relative overflow-hidden">
-                <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                <span className="block sm:hidden transition-transform duration-300 group-hover:-translate-y-full">
+                  Visit project
+                </span>
+                <span className="hidden sm:block transition-transform duration-300 group-hover:-translate-y-full break-all">
                   {project.link.replace(/https?:\/\//, "")}
                 </span>
                 <span className="block absolute inset-0 transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-gray-500">
@@ -204,7 +207,7 @@ const ProjectCard = ({ index, project }: ProjectCardProps) => {
           >
             {project.wip && (
               <div className="project-card-ribbon absolute right-0 top-0 h-16 w-16 sm:h-20 sm:w-20 z-20 overflow-hidden\">
-                <div className="absolute transform rotate-45 bg-yellow-400 text-black text-[10px] font-bold tracking-widest py-1 -right-7 top-5 w-[130px] text-center shadow-lg\">
+                <div className="absolute transform rotate-45 bg-yellow-400 text-black text-[10px] font-bold tracking-widest py-1 -right-7 top-5 w-32.5 text-center shadow-lg\">
                   WIP
                 </div>
               </div>

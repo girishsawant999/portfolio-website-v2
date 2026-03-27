@@ -17,64 +17,62 @@ export default function Home() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
       // --- 1. HERO TEXT SETUP ---
       const splitTextHeader = new SplitText("#hero-title", {
-        type: "words",
-        wordsClass: "hero-words",
+        type: "lines, words",
+        linesClass: "overflow-hidden",
+        wordsClass: "hero-title-word",
       });
 
-      const splitTextDescription = new SplitText("#hero-section p", {
-        type: "words",
-        wordsClass: "hero-desc-words",
+      const splitTextDescription = new SplitText(".hero-desc-text", {
+        type: "lines",
+        linesClass: "overflow-hidden",
+        wordsClass: "hero-desc-line",
       });
 
       // INITIAL STATES
-      // Clear parent element opacity so GSAP can control individual words
-      gsap.set("#hero-title", { opacity: 1 });
-      gsap.set("#hero-section p", { opacity: 1 });
-      // Header: Down and invisible
-      gsap.set(splitTextHeader.words, { y: 50, opacity: 0 });
-      // Description: Completely invisible
-      gsap.set(splitTextDescription.words, { opacity: 0 });
+      gsap.set(".hero-kicker", { opacity: 0, x: -15 });
+      gsap.set(".hero-divider", { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(splitTextHeader.words, { yPercent: 120 });
+      gsap.set(splitTextDescription.lines, { yPercent: 120, opacity: 0 });
 
       // --- ANIMATION SEQUENCE ---
       // 1. Reveal Header on mount
-      tl.to(splitTextHeader.words, {
-        duration: 0.8,
-        y: 0,
+      tl.to(".hero-kicker", {
         opacity: 1,
-        stagger: 0.05,
-        ease: "power3.out",
-      }).to(splitTextDescription.words, { opacity: 0.2 }, "-=0.5");
-
-      // 2. Description animation triggered by scroll - word by word
-      const descriptionTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#hero-section p",
-          start: "clamp(top 60%)", // Start when the top of the paragraph hits the middle of the viewport
-          end: "clamp(top top)",
-          scrub: 1.5,
-          once: true, // Only trigger once
-        },
-      });
-
-      descriptionTl
-        // Ripple to Full Visibility (word by word with stagger)
+        x: 0,
+        duration: 1,
+      })
         .to(
-          splitTextDescription.words,
+          ".hero-divider",
+          { scaleX: 1, duration: 1.2, ease: "power3.inOut" },
+          "<0.1",
+        )
+        .to(
+          splitTextHeader.words,
           {
-            opacity: 1,
-            stagger: 0.08,
-            ease: "none",
+            yPercent: 0,
+            stagger: 0.05,
+            duration: 1.2,
           },
-          0,
+          "<0.2",
+        )
+        .to(
+          splitTextDescription.lines,
+          {
+            yPercent: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 1.2,
+          },
+          "<0.3",
         );
 
       // --- 2. HERO IMAGE PARALLAX ---
       gsap.to(".hero-image-wrapper", {
-        yPercent: 20,
+        yPercent: 15,
         ease: "none",
         scrollTrigger: {
           trigger: "#hero-section",
@@ -90,13 +88,13 @@ export default function Home() {
       sections.forEach((section) => {
         gsap.fromTo(
           section.querySelectorAll(".reveal-text"),
-          { y: 50, opacity: 0 },
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 1.2,
             stagger: 0.1,
-            ease: "power3.out",
+            ease: "expo.out",
             scrollTrigger: {
               trigger: section,
               start: "top 85%",
@@ -114,13 +112,18 @@ export default function Home() {
           scaleX: 1,
           transformOrigin: "left center",
           duration: 1.5,
-          ease: "power4.inOut",
+          ease: "expo.inOut",
           scrollTrigger: {
             trigger: ".architectural-line",
             start: "top 90%",
           },
         },
       );
+
+      return () => {
+        splitTextHeader?.revert();
+        splitTextDescription?.revert();
+      };
     },
     { scope: containerRef },
   );
@@ -129,37 +132,41 @@ export default function Home() {
     <div ref={containerRef}>
       <section
         id="hero-section"
-        className="flex flex-col md:flex-row justify-between w-full gap-10 md:gap-20 min-h-[80vh]"
+        className="flex flex-col md:flex-row items-center justify-between w-full gap-12 lg:gap-24 min-h-[80vh] pt-6 md:pt-12"
       >
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col items-start justify-center gap-6 md:gap-8">
+          <div className="flex items-center gap-5 w-full">
+            <span className="hero-kicker text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
+              Senior Frontend Architect
+            </span>
+            <div className="hero-divider h-[2px] flex-1 max-w-[100px] bg-secondary/30 dark:bg-secondary/50" />
+          </div>
+
           <h1
             id="hero-title"
-            className="heading-1 mb-5 md:mb-8 overflow-hidden opacity-0"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.5rem] font-dm-sans font-medium tracking-tight leading-[1.05]"
           >
             Hi, I’m <br />
-            Girish Sawant, a Senior Frontend Engineer & Architect
+            Girish Sawant.
           </h1>
-          {/* Added min-h to prevent layout shift during font loading/splitting */}
-          <div className="overflow-visible min-h-[120px]">
-            <p className="heading-2 text-gray opacity-0">
-              Senior Tech Lead with 6+ years of experience scaling engineering
-              teams (0 to 10) and delivering enterprise-grade products from 0 to
-              1. I specialize in React/TypeScript architectures, having reduced
-              application load times by ~40% through micro-frontend
-              implementation and optimized build pipelines.
+          <div className="flex flex-col gap-6 mt-2 w-full max-w-2xl">
+            <p className="hero-desc-text text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed">
+              I build robust, scalable frontend architectures that survive
+              enterprise traffic. With 6+ years of experience, I’ve scaled
+              engineering teams from 0 to 10, transitioned monolithic codebases
+              into modern micro-frontend setups, and slashed initial load times
+              by 40%. No fluff, just results.
             </p>
-          </div>
-          <div className="overflow-visible mt-4">
-            <p className="heading-2 text-gray opacity-0">
-              From architecting the &quot;Nucleus&quot; electron platform to
-              defining company-wide design systems, I bridge the gap between
-              complex product requirements and engineering execution.
+            <p className="hero-desc-text text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed">
+              From architecting offline-first Electron platforms to enforcing
+              strict company-wide design systems, I bridge the gap between
+              abstract product requirements and harsh engineering execution.
             </p>
           </div>
         </div>
 
-        <div className="flex-1 justify-items-end relative hero-image-wrapper">
-          <div className="relative rounded-[3rem] overflow-hidden bg-gray-200 dark:bg-gray-700 w-full md:w-[420px] aspect-[3/4] will-change-transform">
+        <div className="flex-1 w-full justify-center md:justify-end flex items-center relative hero-image-wrapper">
+          <div className="relative rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 w-full max-w-[320px] md:max-w-[420px] aspect-[3/4] will-change-transform shadow-2xl dark:shadow-none">
             <Image
               src="/images/profile.jpeg"
               alt="Profile picture of Girish Sawant"
@@ -169,11 +176,11 @@ export default function Home() {
               ref={imageRef}
               onLoad={() => {
                 gsap.to(imageRef.current, {
-                  duration: 1.2,
+                  duration: 1.5,
                   opacity: 1,
                   filter: "blur(0px)",
                   scale: 1,
-                  ease: "power2.out",
+                  ease: "expo.out",
                 });
               }}
             />
@@ -181,145 +188,191 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="skills" className="flex flex-col gap-20 pt-32 pb-20">
-        <div className="flex flex-col gap-20 max-w-full md:max-w-3/4">
+      <section
+        id="skills"
+        className="flex flex-col gap-12 md:gap-20 pt-32 pb-20"
+      >
+        <div className="flex items-center gap-6 w-full reveal-group">
+          <h2 className="text-3xl md:text-4xl font-dm-sans font-medium tracking-tight reveal-text">
+            Core Expertise
+          </h2>
+          <div className="h-[2px] flex-1 bg-gray-200 dark:bg-gray-800 reveal-text" />
+        </div>
+
+        <div className="flex flex-col gap-10 md:gap-16 w-full md:w-5/6 lg:w-4/5 ml-auto">
           {/* Main Skills */}
-          <div className="primary-skills flex flex-col md:flex-row gap-8 md:gap-16 reveal-group">
-            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap reveal-text">
+          <div className="primary-skills flex flex-col md:flex-row gap-4 md:gap-12 reveal-group">
+            <h3 className="text-lg md:text-xl font-dm-sans font-medium tracking-tight flex-1 whitespace-nowrap text-foreground reveal-text">
               Core Stack
             </h3>
-            <p className="body flex-[3] reveal-text">
-              React, Next.js, TypeScript, Micro-frontends, Redux, TanStack
-              Query, Tailwind CSS, GSAP.
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed flex-[2.5] reveal-text">
+              React, Next.js, TypeScript, Micro-frontends (Module Federation),
+              Redux Toolkit, TanStack Query, Tailwind CSS, GSAP.
             </p>
           </div>
 
           {/* Architecture & Ops */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 reveal-group">
-            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap reveal-text">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-12 reveal-group">
+            <h3 className="text-lg md:text-xl font-dm-sans font-medium tracking-tight flex-1 whitespace-nowrap text-foreground reveal-text">
               Architecture & Ops
             </h3>
-            <p className="body flex-[3] reveal-text">
-              Node.js, Docker, AWS Amplify, CI/CD, Micro-frontends, Module
-              Federation, Electron.js, Vitest (90% Coverage).
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed flex-[2.5] reveal-text">
+              Node.js, Docker, AWS Amplify, CI/CD Pipeline Automation,
+              Offline-first Electron.js Apps, Vitest (enforcing 90%+ coverage),
+              System Design.
             </p>
           </div>
 
           {/* Security & Integrations */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 reveal-group">
-            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap reveal-text">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-12 reveal-group">
+            <h3 className="text-lg md:text-xl font-dm-sans font-medium tracking-tight flex-1 whitespace-nowrap text-foreground reveal-text">
               Security & Payments
             </h3>
-            <p className="body flex-[3] reveal-text">
-              Auth (Okta SSO, OAuth2, JWT), RBAC (Role-Based Access Control),
-              Payment Gateways (Razorpay/Stripe Integration, Tabby pay later,
-              Apple pay), Web Security (OWASP).
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed flex-[2.5] reveal-text">
+              Strict RBAC, OAuth2/JWT/Okta SSO, Payment Gateway Architectures
+              (Razorpay, Stripe, Tabby Pay Later, Apple Pay), Web Security
+              (OWASP).
             </p>
           </div>
 
           {/* AI & Automation */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 reveal-group">
-            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap reveal-text">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-12 reveal-group">
+            <h3 className="text-lg md:text-xl font-dm-sans font-medium tracking-tight flex-1 whitespace-nowrap text-foreground reveal-text">
               AI & Emerging Tech
             </h3>
-            <p className="body flex-[3] reveal-text">
-              LLM Integration (OpenAI/Gemini APIs), AI-Driven Data Extraction,
-              Prompt Engineering for Structured Outputs, GitHub Copilot & Cursor
-              Workflows.
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed flex-[2.5] reveal-text">
+              LLM Orchestration (OpenAI/Gemini/Claude APIs), AI-Driven Data
+              Extraction Pipelines, Advanced Prompt Engineering for Structured
+              Outputs, Agentic Workflows.
             </p>
           </div>
         </div>
       </section>
 
       {/* Impact Section */}
-      <section id="impact" className="flex flex-col gap-20 pb-20">
-        <div className="flex flex-col gap-20 max-w-full md:max-w-3/4">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 reveal-group">
-            <h3 className="text-lg underline tracking-tight flex-1 whitespace-nowrap reveal-text">
-              Key Achievements
-            </h3>
-            <div className="body flex-[3] flex flex-col gap-4">
-              <p className="reveal-text">
-                • Scaled engineering teams from 0 to 10 members, managing hiring
-                and mentorship.
-              </p>
-              <p className="reveal-text">
-                • Reduced initial load times by ~40% and improved Core Web
-                Vitals via code-splitting.
-              </p>
-              <p className="reveal-text">
-                • Enforced code quality standards achieving 90%+ unit test
-                coverage with Vitest.
-              </p>
-              <p className="reveal-text">
-                • Architected &quot;Biz&quot; (AI-powered B2B platform) and
-                &quot;X-Wings&quot; (Shared Design System).
-              </p>
-            </div>
+      <section id="impact" className="flex flex-col gap-12 md:gap-20 pb-32">
+        <div className="flex items-center gap-6 w-full reveal-group">
+          <h2 className="text-3xl md:text-4xl font-dm-sans font-medium tracking-tight reveal-text">
+            Key Impact
+          </h2>
+          <div className="h-[2px] flex-1 bg-gray-200 dark:bg-gray-800 reveal-text" />
+        </div>
+
+        <div className="flex flex-col gap-10 md:gap-16 w-full md:w-5/6 lg:w-4/5 ml-auto reveal-group">
+          <div className="flex flex-col gap-6 w-full text-base md:text-lg text-gray-600 dark:text-gray-400 font-inter leading-relaxed">
+            <p className="reveal-text flex items-start gap-4">
+              <span className="text-secondary mt-[0.35rem] min-w-3 max-w-3 text-2xl leading-none">
+                &bull;
+              </span>
+              <span>
+                Scaled engineering teams from 0 to 10 members, driving technical
+                hiring, architectural standards, and mentorship.
+              </span>
+            </p>
+            <p className="reveal-text flex items-start gap-4">
+              <span className="text-secondary mt-[0.35rem] min-w-3 max-w-3 text-2xl leading-none">
+                &bull;
+              </span>
+              <span>
+                Cut application load times by ~40% and crushed Core Web Vitals
+                targets using aggressive code-splitting and Module Federation.
+              </span>
+            </p>
+            <p className="reveal-text flex items-start gap-4">
+              <span className="text-secondary mt-[0.35rem] min-w-3 max-w-3 text-2xl leading-none">
+                &bull;
+              </span>
+              <span>
+                Enforced merciless code quality standards, mandating 90%+ unit
+                test coverage with Vitest to kill technical debt before it
+                merges.
+              </span>
+            </p>
+            <p className="reveal-text flex items-start gap-4">
+              <span className="text-secondary mt-[0.35rem] min-w-3 max-w-3 text-2xl leading-none">
+                &bull;
+              </span>
+              <span>
+                Architected &quot;Biz&quot; (AI-powered B2B SaaS) and
+                single-handedly defined &quot;X-Wings&quot; (a shared React UI
+                design system across 4+ apps).
+              </span>
+            </p>
           </div>
         </div>
       </section>
 
       {/* Animated Line */}
-      <hr className="architectural-line border-foreground border-t-2 origin-left" />
+      <hr className="architectural-line border-gray-200 dark:border-gray-800 border-t-[2px] origin-left" />
 
       {/* Contact Section */}
       <section
         id="contact"
-        className="flex flex-col md:flex-row justify-between pt-16 gap-y-10 reveal-group group"
+        className="flex flex-col lg:flex-row justify-between items-start lg:items-center pt-16 pb-12 gap-y-12 reveal-group group"
       >
-        <div className="max-w-full md:max-w-1/2">
-          <h3 className="heading-2 reveal-text inline">
-            Ready to architect your next scalable product?
-            <span className="inline-flex items-center ml-3 align-middle transition-transform duration-300 group-hover:translate-x-2">
+        <div className="flex-1 max-w-2xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-medium tracking-tight leading-[1.15] reveal-text text-foreground">
+            Ready to architect your <br className="hidden lg:block" />
+            next scalable product?
+            <span className="inline-flex items-center ml-2 lg:ml-3 align-middle transition-transform duration-300 group-hover:translate-x-2">
               <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 21"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M-5.24032e-07 9.01154L-3.92898e-07 12.0115L18.3146 12.0115L11.3126 18.9462L13.4097 21L24 10.5115L13.4097 1.32119e-06L11.3126 2.1L18.3146 9.01154L-5.24032e-07 9.01154Z"
-                  fill="#181717"
-                  className="fill-current"
+                  d="M5 12H19M19 12L12 5M19 12L12 19"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </span>
-          </h3>
+          </h2>
         </div>
 
-        <div id="contacts" className="flex flex-col gap-3 reveal-text">
+        <div
+          id="contacts"
+          className="flex flex-col gap-3 lg:gap-4 justify-end items-start reveal-text"
+        >
           <a
             href="mailto:girishsawant999.gs@gmail.com"
-            className="heading-2 hover:opacity-70 transition-opacity"
+            className="text-lg md:text-xl lg:text-2xl font-inter font-medium text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
           >
             girishsawant999.gs@gmail.com
           </a>
-          <div className="flex items-center gap-6 justify-between mt-2">
+          <div className="flex flex-wrap justify-between items-center gap-5 lg:gap-8 mt-1 lg:mt-2 w-full text-sm">
             <Link
               href={RESUME_LINK}
               target="_blank"
-              className="body w-fit hover:underline cursor-pointer group/link flex items-center gap-2"
+              className="font-inter font-medium uppercase tracking-widest text-secondary dark:text-secondary hover:opacity-80 transition-opacity cursor-pointer group/link flex items-center gap-1.5"
             >
-              View Resume
+              VIEW RESUME
               <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 21"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="inline-block -rotate-45"
+                className="transform group-hover/link:translate-x-[0.15rem] group-hover/link:-translate-y-[0.15rem] transition-transform"
               >
                 <path
-                  d="M-5.24032e-07 9.01154L-3.92898e-07 12.0115L18.3146 12.0115L11.3126 18.9462L13.4097 21L24 10.5115L13.4097 1.32119e-06L11.3126 2.1L18.3146 9.01154L-5.24032e-07 9.01154Z"
-                  fill="#181717"
-                  className="fill-current"
+                  d="M7 17L17 7M17 7H7M17 7V17"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </Link>
 
-            <a href="tel:+918796456149" className="body hover:underline">
+            <a
+              href="tel:+918796456149"
+              className="font-inter text-base text-gray-600 dark:text-gray-300 hover:text-foreground transition-colors"
+            >
               +91 8796456149
             </a>
           </div>
