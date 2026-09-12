@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import CustomCursor from "@/components/ui/CustomCursor";
 import type { Metadata } from "next";
 import { DM_Sans, Inter } from "next/font/google";
 import Link from "next/link";
@@ -85,8 +86,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-container mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 py-6 gap-10 md:gap-20 md:py-12`}
+        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-[1440px] mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 py-6 gap-10 md:gap-20 md:py-12`}
       >
+        <CustomCursor />
         <SmoothScrollProvider>
           <Header />
           <main className="w-full flex-1">{children}</main>

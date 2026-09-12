@@ -12,8 +12,12 @@ const MENUS = [
     href: "/",
   },
   {
-    title: "Projects",
-    href: "/projects",
+    title: "Work",
+    href: "/work",
+  },
+  {
+    title: "Contact",
+    href: "/#contact",
   },
   {
     title: "Resume",
@@ -34,12 +38,7 @@ const HeaderLink = forwardRef<
     <Link
       ref={ref}
       href={href}
-      className={clsx(
-        "navigation relative",
-        "before:content-[''] before:text-inherit before:rounded-md before:h-px before:bottom-0.5 before:bg-current before:transition-[scale] before:ease-in  before:absolute before:left-0 before:origin-center before:right-0 before:scale-0",
-        "hover:before:scale-100",
-        className,
-      )}
+      className={clsx("navigation relative", className)}
       {...props}
     >
       {children}
