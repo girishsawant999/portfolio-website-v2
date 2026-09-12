@@ -1,6 +1,7 @@
 "use client";
 
 import { EDUCATION, EXPERIENCE, PROJECTS, RESUME_LINK } from "@/constant";
+import CompanyLogo from "@/components/ui/CompanyLogo";
 import ProgressiveBlur from "@/components/ui/ProgressiveBlur";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useGSAP } from "@gsap/react";
@@ -361,14 +362,17 @@ export default function AboutContent() {
               key={job.company}
               className="reveal-group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8"
             >
-              <div className="md:col-span-3 reveal-text">
-                <p className="font-dm-sans font-medium text-lg text-foreground">
-                  {job.company}
-                </p>
-                <p className="text-sm text-gray-500 mt-1">{job.role}</p>
-                <p className="text-xs uppercase tracking-widest text-secondary mt-2">
-                  {job.period}
-                </p>
+              <div className="md:col-span-3 reveal-text flex items-start gap-3">
+                <CompanyLogo company={job.company} />
+                <div>
+                  <p className="font-dm-sans font-medium text-lg text-foreground">
+                    {job.company}
+                  </p>
+                  <p className="text-sm text-gray-500 mt-1">{job.role}</p>
+                  <p className="text-xs uppercase tracking-widest text-secondary mt-2">
+                    {job.period}
+                  </p>
+                </div>
               </div>
               <ul className="md:col-span-9 flex flex-col gap-3">
                 {job.points.map((point) => (
