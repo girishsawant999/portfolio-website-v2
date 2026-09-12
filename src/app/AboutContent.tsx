@@ -1,6 +1,7 @@
 "use client";
 
 import { EDUCATION, EXPERIENCE, PROJECTS, RESUME_LINK } from "@/constant";
+import ProgressiveBlur from "@/components/ui/ProgressiveBlur";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -346,7 +347,8 @@ export default function AboutContent() {
 
       {/* Experience */}
       <section className="flex flex-col gap-12 md:gap-16 pt-24">
-        <div className="flex items-center gap-6 w-full reveal-group">
+        <div className="sticky top-0 z-40 flex items-center gap-6 w-[calc(100%+2.5rem)] py-4 -mx-5 px-5 md:w-[calc(100%+5rem)] md:-mx-10 md:px-10 reveal-group">
+          <ProgressiveBlur />
           <h2 className="text-3xl md:text-4xl font-dm-sans font-medium tracking-tight reveal-text">
             Experience
           </h2>
@@ -391,7 +393,8 @@ export default function AboutContent() {
         id="services"
         className="flex flex-col gap-12 md:gap-16 pt-20 pb-8"
       >
-        <div className="flex items-center gap-6 w-full reveal-group">
+        <div className="sticky top-0 z-40 flex items-center gap-6 w-[calc(100%+2.5rem)] py-4 -mx-5 px-5 md:w-[calc(100%+5rem)] md:-mx-10 md:px-10 reveal-group">
+          <ProgressiveBlur />
           <h2 className="text-3xl md:text-4xl font-dm-sans font-medium tracking-tight reveal-text">
             What I Bring
           </h2>
@@ -504,7 +507,8 @@ export default function AboutContent() {
 
       {/* Core Expertise */}
       <section className="flex flex-col gap-12 md:gap-16 pt-20 pb-8">
-        <div className="flex items-center gap-6 w-full reveal-group">
+        <div className="sticky top-0 z-40 flex items-center gap-6 w-[calc(100%+2.5rem)] py-4 -mx-5 px-5 md:w-[calc(100%+5rem)] md:-mx-10 md:px-10 reveal-group">
+          <ProgressiveBlur />
           <h2 className="text-3xl md:text-4xl font-dm-sans font-medium tracking-tight reveal-text">
             Core Expertise
           </h2>
@@ -530,7 +534,8 @@ export default function AboutContent() {
 
       {/* Key Impact */}
       <section className="flex flex-col gap-12 md:gap-16 pt-20 pb-8">
-        <div className="flex items-center gap-6 w-full reveal-group">
+        <div className="sticky top-0 z-40 flex items-center gap-6 w-[calc(100%+2.5rem)] py-4 -mx-5 px-5 md:w-[calc(100%+5rem)] md:-mx-10 md:px-10 reveal-group">
+          <ProgressiveBlur />
           <h2 className="text-3xl md:text-4xl font-dm-sans font-medium tracking-tight reveal-text">
             Key Impact
           </h2>
@@ -551,7 +556,8 @@ export default function AboutContent() {
 
       {/* Education */}
       <section className="flex flex-col gap-8 pt-20 pb-24 reveal-group">
-        <div className="flex items-center gap-6 w-full">
+        <div className="sticky top-0 z-40 flex items-center gap-6 w-[calc(100%+2.5rem)] py-4 -mx-5 px-5 md:w-[calc(100%+5rem)] md:-mx-10 md:px-10">
+          <ProgressiveBlur />
           <h2 className="reveal-text text-3xl md:text-4xl font-dm-sans font-medium tracking-tight">
             Education
           </h2>
