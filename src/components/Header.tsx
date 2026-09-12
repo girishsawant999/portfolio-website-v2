@@ -1,10 +1,15 @@
 "use client";
 
 import { RESUME_LINK } from "@/constant";
+import ProgressiveBlur from "@/components/ui/ProgressiveBlur";
+import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { forwardRef, useLayoutEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MENUS = [
   {
@@ -12,8 +17,12 @@ const MENUS = [
     href: "/",
   },
   {
-    title: "Projects",
-    href: "/projects",
+    title: "Work",
+    href: "/work",
+  },
+  {
+    title: "Contact",
+    href: "/#contact",
   },
   {
     title: "Resume",
@@ -34,12 +43,7 @@ const HeaderLink = forwardRef<
     <Link
       ref={ref}
       href={href}
-      className={clsx(
-        "navigation relative",
-        "before:content-[''] before:text-inherit before:rounded-md before:h-px before:bottom-0.5 before:bg-current before:transition-[scale] before:ease-in  before:absolute before:left-0 before:origin-center before:right-0 before:scale-0",
-        "hover:before:scale-100",
-        className,
-      )}
+      className={clsx("navigation relative", className)}
       {...props}
     >
       {children}
@@ -50,8 +54,35 @@ const HeaderLink = forwardRef<
 HeaderLink.displayName = "HeaderLink";
 
 const Header = () => {
+  const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const navItemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  // Hide the header on downward scroll, reveal it again as soon as the user
+  // scrolls back up — it then sits above (in place of) any sticky section title.
+  useGSAP(() => {
+    const headerEl = headerRef.current;
+    if (!headerEl) return;
+
+    const showHeader = () =>
+      gsap.to(headerEl, { yPercent: 0, duration: 0.4, ease: "power2.out" });
+    const hideHeader = () =>
+      gsap.to(headerEl, { yPercent: -100, duration: 0.4, ease: "power2.out" });
+
+    const trigger = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: (self) => {
+        if (self.direction === 1 && self.scroll() > headerEl.offsetHeight) {
+          hideHeader();
+        } else {
+          showHeader();
+        }
+      },
+    });
+
+    return () => trigger.kill();
+  }, []);
 
   useLayoutEffect(() => {
     // Animate logo
@@ -77,7 +108,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="flex items-center justify-between col-span-full w-full">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 flex items-center justify-between col-span-full w-[calc(100%+2.5rem)] py-4 -mx-5 px-5 md:w-[calc(100%+5rem)] md:-mx-10 md:px-10"
+    >
+      <ProgressiveBlur />
       <div>
         <Link
           ref={logoRef}
