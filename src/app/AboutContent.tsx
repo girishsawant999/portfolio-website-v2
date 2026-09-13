@@ -1,6 +1,6 @@
 "use client";
 
-import { EDUCATION, EXPERIENCE, RESUME_LINK } from "@/constant";
+import { EDUCATION, EXPERIENCE } from "@/constant";
 import CompanyLogo from "@/components/ui/CompanyLogo";
 import ProgressiveBlur from "@/components/ui/ProgressiveBlur";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -9,7 +9,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Image from "next/image";
-import Link from "next/link";
 import { useRef } from "react";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);

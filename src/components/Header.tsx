@@ -148,7 +148,7 @@ const Header = () => {
             ref={(el) => {
               if (el) navItemsRef.current[index] = el;
             }}
-            key={nav.title}
+            key={nav.href}
             href={nav.href}
             target={nav.target}
             className="opacity-0"
