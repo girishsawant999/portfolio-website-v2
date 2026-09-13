@@ -72,6 +72,34 @@ body {
   opacity: 0;
 }
 
+.hero-kicker,
+.work-kicker,
+.work-detail-kicker {
+  opacity: 0;
+  transform: translateX(-15px);
+}
+
+.hero-divider,
+.work-divider,
+.work-detail-divider {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+#hero-title,
+#work-title,
+#work-detail-title,
+.hero-desc-text {
+  visibility: hidden;
+}
+
+.hero-title-word,
+.hero-desc-line,
+.work-title-word,
+.work-detail-title-word {
+  visibility: visible;
+}
+
 body::selection {
   background: var(--color-secondary);
   color: var(--background);
@@ -81,6 +109,32 @@ body::selection {
 html.custom-cursor-active,
 html.custom-cursor-active * {
   cursor: none !important;
+}
+
+/*
+ * Cursor dot is an SVG made of two half-circle paths so it can morph into a
+ * pair of scroll arrows. Both states use the same M/C/C/Z segment structure
+ * (only the control points move) so the browser can interpolate `d` smoothly.
+ */
+.cursor-dot-half {
+  d: path("M0,20 C0,8.954 8.954,0 20,0 C31.046,0 40,8.954 40,20 Z");
+  transition:
+    d 0.3s ease,
+    transform 0.3s ease;
+}
+
+.cursor-dot-bottom {
+  d: path("M0,20 C0,31.046 8.954,40 20,40 C31.046,40 40,31.046 40,20 Z");
+}
+
+html.custom-cursor-scrolling .cursor-dot-top {
+  d: path("M0,20 C6.667,13.333 13.333,6.667 20,0 C26.667,6.667 33.333,13.333 40,20 Z");
+  transform: translateY(-3px);
+}
+
+html.custom-cursor-scrolling .cursor-dot-bottom {
+  d: path("M0,20 C6.667,26.667 13.333,33.333 20,40 C26.667,33.333 33.333,26.667 40,20 Z");
+  transform: translateY(3px);
 }
 
 @media (prefers-color-scheme: dark) {

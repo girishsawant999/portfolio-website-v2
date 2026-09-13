@@ -32,6 +32,9 @@ const MAGNET_MAX_SIZE = 220;
 // Hard cap so the cursor never drifts further than this from the pointer.
 const MAGNET_MAX_OFFSET = 28;
 
+// How long after the last scroll event before the dot morphs back to a circle.
+const SCROLL_IDLE_DELAY = 150;
+
 export default function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
   const dotRef = useRef<HTMLDivElement>(null);
@@ -219,12 +222,22 @@ export default function CustomCursor() {
       visible = true;
     };
 
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    const handleScroll = () => {
+      syncRect();
+      document.documentElement.classList.add("custom-cursor-scrolling");
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.documentElement.classList.remove("custom-cursor-scrolling");
+      }, SCROLL_IDLE_DELAY);
+    };
+
     window.addEventListener("mousemove", handleMove, { passive: true });
     window.addEventListener("mouseover", handleOver, { passive: true });
     window.addEventListener("mouseout", handleOut, { passive: true });
     window.addEventListener("mousedown", handleDown, { passive: true });
     window.addEventListener("mouseup", handleUp, { passive: true });
-    window.addEventListener("scroll", syncRect, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", syncRect);
     document.addEventListener("mouseleave", handleLeaveWindow);
     document.addEventListener("mouseenter", handleEnterWindow);
@@ -235,6 +248,8 @@ export default function CustomCursor() {
       cancelAnimationFrame(frame);
       gsap.killTweensOf(ring);
       document.documentElement.classList.remove("custom-cursor-active");
+      document.documentElement.classList.remove("custom-cursor-scrolling");
+      if (scrollTimeout) clearTimeout(scrollTimeout);
       if (magnetEl) {
         magnetEl.style.transform = "";
         magnetEl.style.willChange = "";
@@ -244,7 +259,7 @@ export default function CustomCursor() {
       window.removeEventListener("mouseout", handleOut);
       window.removeEventListener("mousedown", handleDown);
       window.removeEventListener("mouseup", handleUp);
-      window.removeEventListener("scroll", syncRect);
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", syncRect);
       document.removeEventListener("mouseleave", handleLeaveWindow);
       document.removeEventListener("mouseenter", handleEnterWindow);
@@ -268,7 +283,7 @@ export default function CustomCursor() {
       />
       <div
         ref={dotRef}
-        className="absolute left-0 top-0 rounded-full bg-white opacity-0 will-change-transform"
+        className="absolute left-0 top-0 opacity-0 will-change-transform"
         style={{
           width: DOT_HOVER_SIZE,
           height: DOT_HOVER_SIZE,
@@ -276,7 +291,25 @@ export default function CustomCursor() {
           marginTop: -DOT_HOVER_SIZE / 2,
           transform: `scale(${DOT_REST_SCALE})`,
         }}
-      />
+      >
+        <svg
+          width={DOT_HOVER_SIZE}
+          height={DOT_HOVER_SIZE}
+          viewBox="0 0 40 40"
+          className="block"
+        >
+          <path
+            className="cursor-dot-half cursor-dot-top"
+            fill="white"
+            d="M0,20 C0,8.954 8.954,0 20,0 C31.046,0 40,8.954 40,20 Z"
+          />
+          <path
+            className="cursor-dot-half cursor-dot-bottom"
+            fill="white"
+            d="M0,20 C0,31.046 8.954,40 20,40 C31.046,40 40,31.046 40,20 Z"
+          />
+        </svg>
+      </div>
     </div>
   );
 }

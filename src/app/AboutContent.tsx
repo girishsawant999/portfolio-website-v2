@@ -93,7 +93,7 @@ export default function AboutContent() {
 
       const splitTextDescription = new SplitText(".hero-desc-text", {
         type: "lines",
-        linesClass: "overflow-hidden",
+        linesClass: "hero-desc-line overflow-hidden",
         wordsClass: "hero-desc-line",
       });
 
@@ -636,12 +636,12 @@ export default function AboutContent() {
       </section> */}
 
       {/* Animated Line */}
-      <hr className="architectural-line border-gray-200 dark:border-gray-800 border-t-[2px] origin-left" />
+      {/* <hr className="architectural-line border-gray-200 dark:border-gray-800 border-t-[2px] origin-left" /> */}
 
       {/* Contact Section */}
       <section
         id="contact"
-        className="flex flex-col gap-16 pt-20 pb-12 reveal-group bg-foreground/5 -mx-5 px-5 md:-mx-10 md:px-10"
+        className="flex flex-col gap-16 pt-20 pb-12 reveal-group bg-foreground/5 -mx-5 px-5 md:-mx-10 md:px-10 border-gray-200 dark:border-gray-800 border-t-[2px] origin-left"
       >
         <div className="max-w-4xl">
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-inter font-regular tracking-tight leading-[1.1] reveal-text text-foreground">
@@ -657,7 +657,7 @@ export default function AboutContent() {
           <a
             href="mailto:girishsawant999.gs@gmail.com"
             data-cursor-hover
-            className="text-lg md:text-xl font-inter font-medium text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
+            className="text-lg md:text-xl font-inter font-medium w-fit text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
           >
             girishsawant999.gs@gmail.com
           </a>
@@ -665,7 +665,7 @@ export default function AboutContent() {
           <a
             href="tel:+918796456149"
             data-cursor-hover
-            className="text-lg md:text-xl font-inter font-medium text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
+            className="text-lg md:text-xl font-inter font-medium w-fit text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
           >
             +91 8796456149
           </a>
