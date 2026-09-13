@@ -642,77 +642,34 @@ export default function AboutContent() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="flex flex-col lg:flex-row justify-between items-start lg:items-center pt-16 pb-12 gap-y-12 reveal-group group"
+        className="flex flex-col gap-16 pt-20 pb-12 reveal-group bg-foreground/5 -mx-5 px-5 md:-mx-10 md:px-10"
       >
-        <div className="flex-1 max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-inter font-medium tracking-tight leading-[1.15] reveal-text text-foreground">
-            Ready to architect your <br className="hidden lg:block" />
-            next scalable product?
-            <span className="inline-flex items-center ml-2 lg:ml-3 align-middle transition-transform duration-300 group-hover:translate-x-2">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5 12H19M19 12L12 5M19 12L12 19"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
+        <div className="max-w-4xl">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-inter font-regular tracking-tight leading-[1.1] reveal-text text-foreground">
+            Connect, collaborate, <br />
+            <span className="text-gray-400 dark:text-gray-600">or just say</span> hello
           </h2>
         </div>
 
         <div
           id="contacts"
-          className="flex flex-col gap-3 lg:gap-4 justify-end items-start reveal-text"
+          className="flex flex-col gap-4 reveal-text"
         >
           <a
             href="mailto:girishsawant999.gs@gmail.com"
             data-cursor-hover
-            className="text-lg md:text-xl lg:text-2xl font-inter font-medium text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
+            className="text-lg md:text-xl font-inter font-medium text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
           >
             girishsawant999.gs@gmail.com
           </a>
-          <div className="flex flex-wrap justify-between items-center gap-5 lg:gap-8 mt-1 lg:mt-2 w-full text-sm">
-            <Link
-              href={RESUME_LINK}
-              target="_blank"
-              data-cursor-hover
-              className="font-inter font-medium uppercase tracking-widest text-secondary dark:text-secondary hover:opacity-80 transition-opacity cursor-pointer group/link flex items-center gap-1.5"
-            >
-              VIEW RESUME
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="transform group-hover/link:translate-x-[0.15rem] group-hover/link:-translate-y-[0.15rem] transition-transform"
-              >
-                <path
-                  d="M7 17L17 7M17 7H7M17 7V17"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-
-            <a
-              href="tel:+918796456149"
-              data-cursor-hover
-              className="font-inter text-base text-gray-600 dark:text-gray-300 hover:text-foreground transition-colors"
-            >
-              +91 8796456149
-            </a>
-          </div>
+          
+          <a
+            href="tel:+918796456149"
+            data-cursor-hover
+            className="text-lg md:text-xl font-inter font-medium text-gray-600 dark:text-gray-400 hover:text-foreground transition-colors"
+          >
+            +91 8796456149
+          </a>
         </div>
       </section>
     </div>
