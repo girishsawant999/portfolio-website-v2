@@ -86,13 +86,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-[1440px] mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 pt-6 gap-10 md:gap-20 md:pt-12`}
+        className={`${inter.variable} ${dmSans.variable} antialiased min-h-dvh max-w-[1440px] mx-auto flex flex-col w-screen overflow-x-hidden px-5 md:px-10 pt-6 md:pt-12`}
       >
         <CustomCursor />
         <SmoothScrollProvider>
           <Header />
           <main className="w-full flex-1">{children}</main>
-          <footer className="flex flex-col lg:flex-row items-start lg:items-end justify-between w-[calc(100%+2.5rem)] md:w-[calc(100%+5rem)] -mx-5 md:-mx-10 gap-8 lg:gap-0 pt-12 pb-6 px-5 md:px-10 bg-foreground/5 -mt-10 md:-mt-20">
+          <footer className="flex flex-col lg:flex-row items-start lg:items-end justify-between w-[calc(100%+2.5rem)] md:w-[calc(100%+5rem)] -mx-5 md:-mx-10 gap-8 lg:gap-0 pt-12 pb-6 px-5 md:px-10">
             <div className="flex flex-col gap-6">
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 © {new Date().getFullYear()} Girish Sawant. All rights reserved.
