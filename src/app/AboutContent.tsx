@@ -1,6 +1,6 @@
 "use client";
 
-import { EDUCATION, EXPERIENCE, PROJECTS, RESUME_LINK } from "@/constant";
+import { EDUCATION, EXPERIENCE, RESUME_LINK } from "@/constant";
 import CompanyLogo from "@/components/ui/CompanyLogo";
 import ProgressiveBlur from "@/components/ui/ProgressiveBlur";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -74,8 +74,6 @@ const IMPACT = [
   "Pushed for test coverage everywhere. Started from 20%, got it to 80% over a year. Caught actual bugs in QA that would've been customer support tickets. Costs less than dealing with production fire.",
   "Built a component library for an e-commerce platform. Design system + shared components across 3 different products. Saved weeks of duplicate work. Not fancy, just useful.",
 ];
-
-const FEATURED_PROJECTS = PROJECTS.slice(0, 3);
 
 export default function AboutContent() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -171,8 +169,11 @@ export default function AboutContent() {
       });
 
       gsap.to(".service-circle-inner", {
-        scale: [1, 1.2, 1],
-        opacity: [1, 0.6, 1],
+        keyframes: [
+          { scale: 1, opacity: 1 },
+          { scale: 1.2, opacity: 0.6 },
+          { scale: 1, opacity: 1 },
+        ],
         duration: 2,
         repeat: -1,
         ease: "sine.inOut",
@@ -208,7 +209,14 @@ export default function AboutContent() {
         lightningTl.to(
           ".service-icon-1",
           {
-            x: [0, -2, 2, -1, 1, 0],
+            keyframes: [
+              { x: 0 },
+              { x: -2 },
+              { x: 2 },
+              { x: -1 },
+              { x: 1 },
+              { x: 0 },
+            ],
             duration: 0.6,
             ease: "sine.inOut",
           },
@@ -278,7 +286,7 @@ export default function AboutContent() {
       }
 
       gsap.to(".service-icon-3 .service-checkmark-border", {
-        opacity: [1, 0.5, 1],
+        keyframes: [{ opacity: 1 }, { opacity: 0.5 }, { opacity: 1 }],
         duration: 2,
         repeat: -1,
         ease: "sine.inOut",
