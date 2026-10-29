@@ -81,6 +81,7 @@ export default function CustomCursor() {
     let opacity = 0;
     let visible = false;
     let pressed = false;
+    let isScrolling = false; // Add a flag for scrolling state
 
     let hoverEl: HTMLElement | null = null;
     let hoverRect: DOMRect | null = null;
@@ -123,7 +124,8 @@ export default function CustomCursor() {
       ringToX(round(targetX));
       ringToY(round(targetY));
 
-      const targetDotScale = (hoverEl ? 1 : DOT_REST_SCALE) * (pressed ? 0.8 : 1);
+      // Force the dot to stay small (DOT_REST_SCALE) if currently scrolling
+      const targetDotScale = (hoverEl && !isScrolling ? 1 : DOT_REST_SCALE) * (pressed ? 0.8 : 1);
       dotScale = lerp(dotScale, targetDotScale, sizeEase);
       opacity = lerp(opacity, visible ? 1 : 0, 0.2);
 
@@ -225,9 +227,11 @@ export default function CustomCursor() {
     let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
     const handleScroll = () => {
       syncRect();
+      isScrolling = true; // Flag that scroll is active
       document.documentElement.classList.add("custom-cursor-scrolling");
       if (scrollTimeout) clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
+        isScrolling = false; // Clear flag when scroll is idle
         document.documentElement.classList.remove("custom-cursor-scrolling");
       }, SCROLL_IDLE_DELAY);
     };
